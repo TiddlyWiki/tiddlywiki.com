@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# Usage:
+#  bld [release]
+
+DEFAULT_RELEASE="2.6.3"
+RELEASE=${1:-$DEFAULT_RELEASE}
+DEST=$PWD/cooked/tiddlywiki.com
+mkdir -p cooked
+mkdir -p cooked/tiddlywiki.com
+cook index
+cp index.html $DEST/index.$RELEASE.html
+cp TiddlySaver.jar tmp/TiddlySaver.jar
+cook empty
+cp empty.html tmp/empty.html
+rm $DEST/empty.$RELEASE.zip
+zip -j $DEST/empty.$RELEASE.zip tmp/empty.html tmp/TiddlySaver.jar
+rm tmp/empty.html
