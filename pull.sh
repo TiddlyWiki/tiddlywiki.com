@@ -58,4 +58,4 @@ do
 	)
 done
 
-cook
+cook $PWD/index.html.recipe
