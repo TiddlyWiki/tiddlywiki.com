@@ -3,7 +3,7 @@
 # Usage:
 #  bld [release]
 
-DEFAULT_RELEASE="2.6.3"
+DEFAULT_RELEASE="2.6.5"
 RELEASE=${1:-$DEFAULT_RELEASE}
 DEST=$PWD/cooked/tiddlywiki.com
 mkdir -p cooked
