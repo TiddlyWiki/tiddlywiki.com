@@ -15,15 +15,17 @@ The content for tiddlywiki.com is obtained from a [TiddlySpace](http://tiddlyspa
 Prerequisites
 -------------
 
+Ensure that you have downloaded and installed TiddlyWiki as described at https://github.com/TiddlyWiki/tiddlywiki
+
 You need perl to build tiddlywiki.com. If you do not have it installed, it can be downloaded [here](http://www.perl.org/get.html).
 
 You need to set up `ginsu`. Copy the `ginsu` script file to somewhere that is on your path. Edit this file according to the instructions in the file.
 
+You need to set up the `tiddler2tid`. Copy the `tiddler2tid` script file to somewhere that is on your path.
+
 
 Building tiddlywiki.com
 -----------------------
-
-First ensure that you have downloaded and installed TiddlyWiki as described at https://github.com/TiddlyWiki/tiddlywiki
 
 Pull down the tiddlywiki.com content form TiddlySpace by invoking the `pull.sh` script:
 
