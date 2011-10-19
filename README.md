@@ -12,6 +12,14 @@ This repository contains the tools required to create the site http://tiddlywiki
 The content for tiddlywiki.com is obtained from a [TiddlySpace](http://tiddlyspace.com/).
 
 
+Prerequisites
+-------------
+
+You need perl to build tiddlywiki.com. If you do not have it installed, it can be downloaded [here](http://www.perl.org/get.html).
+
+You need to set up `ginsu`. Copy the `ginsu` script file to somewhere that is on your path. Edit this file according to the instructions in the file.
+
+
 Building tiddlywiki.com
 -----------------------
 
