@@ -8,9 +8,6 @@ set -e
 export space
 export dir
 
-# for ginsu, cook and the tiddler2tid script from a subdirectory
-export PATH=$PATH:../../../../contributors/PaulDowney/tools/:../../../tools/cooker/bash/:../../tools/cooker/bash/
-
 mkdir -p tmp
 
 for space in tiddlywiki-com-ref tiddlywiki-com
