@@ -39,10 +39,12 @@ Invoke the build script:
 
 You now need to generate the TiddlyWiki RSS file. To do this open the TiddlyWiki file index.html in Firefox, ensure the AdvancedOption "Generate an RSS feed when saving changes" is set, and then save the TiddlyWiki. Doing this also causes TiddlyWiki to generate some static HTML for display when Javascript is not enabled.
 
+Edit the upload script `upload` setting the correct version number for TiddlyWiki.
+
 Finally upload the TiddlyWiki files to tiddlywiki.com:
 
     ./upload
 
-You will be prompted for your password on several occasions during the upload process. To do this you will of course need an account on tiddlywiki.com. The upload script assumes your remote user name is the same as your local user name, if it is not then you may specify your remote user name as the second parameter to the upload script (the first parameter is the TiddlyWiki version number).
+You will be prompted for your password on several occasions during the upload process. To do this you will of course need an account on tiddlywiki.com. The upload script assumes your remote user name is the same as your local user name, if it is not then you may specify your remote user name as the first parameter to the upload script..
 
 Migrated from http://svn.tiddlywiki.org on 20110719.
