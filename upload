@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-#  upload [release] [user] [cleanup]
+#  upload [user] [release] [cleanup]
 
 # default values
 DEFAULT_RELEASE="2.6.5"
