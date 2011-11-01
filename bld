@@ -13,5 +13,5 @@ cook $PWD/empty.html.recipe -d $DEST -o empty.$RELEASE.html
 cp ../tiddlywiki/java/TiddlySaver.jar $DEST/TiddlySaver.jar
 rm $DEST/empty.$RELEASE.zip
 cp $DEST/empty.$RELEASE.html tmp/empty.html
-zip -j $DEST/empty.$RELEASE.zip tmp/empty.html TiddlySaver.jar
+zip -j $DEST/empty.$RELEASE.zip tmp/empty.html $DEST/TiddlySaver.jar
 rm tmp/empty.html
