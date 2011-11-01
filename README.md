@@ -41,10 +41,17 @@ You now need to generate the TiddlyWiki RSS file. To do this open the TiddlyWiki
 
 Edit the upload script `upload` setting the correct version number for TiddlyWiki.
 
-Finally upload the TiddlyWiki files to tiddlywiki.com:
+Finally you need to upload the TiddlyWiki files to tiddlywiki.com. If this is the first time you are uploading, then you will need to create a `tmp` directory on tiddlywiki.com:
+
+    ssh user@tiddlywiki.com
+    [enter your password when prompted]
+    mkdir tmp
+    exit
+
+You can now upload the TiddlyWiki files, run the upload script:
 
     ./upload
 
-You will be prompted for your password on several occasions during the upload process. To do this you will of course need an account on tiddlywiki.com. The upload script assumes your remote user name is the same as your local user name, if it is not then you may specify your remote user name as the first parameter to the upload script..
+You will be prompted for your password on several occasions during the upload process. To do this you will of course need an account on tiddlywiki.com. The upload script assumes your remote user name is the same as your local user name, if it is not then you may specify your remote user name as the first parameter to the upload script.
 
 Migrated from http://svn.tiddlywiki.org on 20110719.
