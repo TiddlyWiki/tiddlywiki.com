@@ -27,6 +27,12 @@ You need to set up the `tiddler2tid`. Copy the `tiddler2tid` script file to some
 Building tiddlywiki.com
 -----------------------
 
+After downloading and installing TiddlyWiki checkout the version of TiddlyWiki that you wish to use for tiddlywiki.com. Ongoing development occurs in the tiddlywiki repository, so you need to checkout a tagged release version of TiddlyWiki. Change to the tiddlywiki and checkout the required version, eg:
+
+    git checkout tags/v2.6.5
+
+Change back to the tiddlywiki.com directory.
+
 Pull down the tiddlywiki.com content form TiddlySpace by invoking the `pull.sh` script:
 
     ./pull.sh
