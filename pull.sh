@@ -49,7 +49,7 @@ do
 		find . -name \*.tid -o -name \*.js |
 			grep -v '\.jpg\.' |
 			grep -v 'PageTemplate' |
-			grep -v 'SplashScreen' |
+#			grep -v 'SplashScreen' |
 			grep -v 'SiteSubtitle' |
 			sed 's/^/tiddler: /' > split.recipe
 	)
