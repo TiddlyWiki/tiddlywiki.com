@@ -60,4 +60,11 @@ You can now upload the TiddlyWiki files, run the upload script:
 
 You will be prompted for your password on several occasions during the upload process. To do this you will of course need an account on tiddlywiki.com. The upload script assumes your remote user name is the same as your local user name, if it is not then you may specify your remote user name as the first parameter to the upload script.
 
-Migrated from http://svn.tiddlywiki.org on 20110719.
+Finally you you manually upload the empty tiddlywiki file at cooked/tidddlywiki.com (eg cook/tiddlywiki.com/empty.2.6.5.html) to http://tiddlywiki-releases.tiddlyspace.com. This file needs to be uploaded to two places:
+
+    http://tiddlywiki-releases.tiddlyspace.com/upgrade
+    http://tiddlywiki-releases.tiddlyspace.com/n.n.n (where n.n.n is the current release, eg 2.6.5)
+
+You need to be a member of the tiddlywiki-releases.tiddlyspace.com space to do this.
+
+[Migrated from http://svn.tiddlywiki.org on 20110719.]
