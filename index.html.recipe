@@ -1,3 +1,2 @@
-recipe: ../tiddlywiki/tiddlywikinosaver.html.recipe
-recipe: tiddlywiki-com-ref/split.recipe
-recipe: tiddlywiki-com/split.recipe
+recipe: ../tiddlywiki/tiddlywiki.html.recipe
+recipe: pulled/split.recipe
