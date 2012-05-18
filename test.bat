@@ -1,27 +1,30 @@
 @ECHO OFF
 
 SET RELEASE=%1
-IF [%1]==[] SET RELEASE=2.6.6a
-SET DEST=%CD%\cooked\%RELEASE%
+IF [%1]==[] goto usage
+SET DEST=%CD%\cooked\%RELEASE%\index.html
+SET TARGET=%CD%\test\index.html
+IF NOT [%2]==[] SET TARGET=%CD%\test\index.%2.html
 
-REM CHOOSE *ONE* OF THE FOLLOWING FILE COMPARISON PROGRAMS,
+REM DOWNLOAD *ONE* OF THE FOLLOWING FILE COMPARISON PROGRAMS,
 REM OR INSTALL YOUR OWN PREFERRED PROGRAM
-
-REM WINDIFF:
+REM *** WINDIFF (http://www.grigsoft.com/download-windiff.htm)
 SET DIFF="C:\Program Files\WinDiff\WinDiff.exe"
-REM DOWNLOAD/INSTALL from http://www.grigsoft.com/download-windiff.htm
-
-REM EXAMDIFF:
+REM *** EXAMDIFF (http://www.prestosoft.com/edp_examdiff.asp)
 SET DIFF="C:\Program Files\ExamDiff\ExamDiff.exe"
-REM DOWNLOAD/INSTALL from http://www.prestosoft.com/edp_examdiff.asp
 
-if EXIST test\index.html goto diff
-choice /M "TEST: 'test\index.html' not found.  Download from TiddlyWiki.com?"
-IF %ERRORLEVEL%==2 GOTO:eof
-mkdir  test 2> NUL
-echo TEST: getting current release from tiddlywiki.com
-node ..\TW5\tiddlywiki.js --recipe test.recipe --savewiki test
+if EXIST %TARGET% goto diff
+echo TEST: %TARGET% not found.
+GOTO:eof
+
 :diff
 echo TEST: running version comparison...
-%DIFF% "%DEST%\index.html" test\index.html
+echo TEST: new=%DEST%
+echo TEST: old=%TARGET%
+%DIFF% "%DEST%" "%TARGET%"
+
 echo TEST: done
+goto:eof
+
+:usage
+echo USAGE: %0 {new release #} {old release #}

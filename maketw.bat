@@ -1,14 +1,15 @@
 @ECHO OFF
 SET RELEASE=%1
-IF [%1]==[] SET RELEASE=2.6.6a
+IF [%RELEASE%]==[] SET RELEASE=2.6.6a
+SET TW5=..\TiddlyWiki5\archive\tiddlywiki.js
 echo MAKETW: started
 echo - - - - - - - - - - - - - - -
 call pull %RELEASE%
 echo - - - - - - - - - - - - - - -
-call bld.bat  %RELEASE%
+call bld  %RELEASE%
 echo - - - - - - - - - - - - - - -
-call test.bat %RELEASE%
+call test %RELEASE%
 echo - - - - - - - - - - - - - - -
-call upload.bat %RELEASE%
+call upload %RELEASE%
 echo - - - - - - - - - - - - - - -
 echo MAKETW: done
