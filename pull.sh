@@ -55,4 +55,11 @@ do
 	)
 done
 
+# added by ELS for compatibility with new "pulled" target directory
+mkdir -p pulled
+cp tiddlywiki-com-ref/* pulled
+cp tiddlywiki-com/* pulled
+cat tiddlywiki-com-ref/split.recipe >pulled/split.recipe
+cat tiddlywiki-com/split.recipe >>pulled/split.recipe
+
 cook $PWD/index.html.recipe
