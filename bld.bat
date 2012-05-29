@@ -1,11 +1,7 @@
 @ECHO OFF
+call setenv %1
 
-SET RELEASE=%1
-IF [%1]==[] goto usage
-SET DEST=%CD%\cooked\%RELEASE%
-if [%TW5%]==[] SET TW5=..\TiddlyWiki5\archive\tiddlywiki.js
-
-echo BUILD: clearing target folder (cooked/%RELEASE%)
+echo BUILD: clearing target folder: "cooked/%RELEASE%"
 mkdir  cooked 2> NUL
 mkdir  %DEST% 2> NUL & del /Q %DEST%
 
@@ -20,9 +16,9 @@ echo BUILD: copying TIDDLYSAVER.JAR
 copy ..\tiddlywiki\java\TiddlySaver.jar %DEST% 1> NUL
 
 echo BUILD: copying files to temporary zip folder
-mkdir  %DEST%\zip 2> NUL & del /Q %DEST%\zip
-copy %DEST%\empty.html      %DEST%\zip 1> NUL
-copy %DEST%\tiddlysaver.jar %DEST%\zip 1> NUL
+mkdir %DEST%\zip 2> NUL & del /Q %DEST%\zip
+copy  %DEST%\empty.html      %DEST%\zip 1> NUL
+copy  %DEST%\tiddlysaver.jar %DEST%\zip 1> NUL
 
 echo BUILD: generating EMPTY.ZIP
 rem *** NOTE: create and invoke a temporary script, _zipIt.vbs, that generates a ZIP file:
@@ -40,8 +36,7 @@ CScript _zipIt.vbs %DEST%\zip %DEST%\empty.zip 1> NUL
 echo BUILD: cleaning up temporary files/folder
 del _zipIt.vbs & del /Q %DEST%\zip & rmdir %DEST%\zip
 
-echo BUILD: done
-goto:eof
+echo BUILD: copying INDEX.HTML to TEST/INDEX.%RELEASE%.HTML
+copy %DEST%\index.html %CD%\test\index.%RELEASE%.html 1> NUL
 
-:usage
-echo USAGE: %0 {target release #}
+echo BUILD: done

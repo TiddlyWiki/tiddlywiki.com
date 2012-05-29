@@ -1,16 +1,23 @@
 @ECHO OFF
+call setenv %1
 
-SET DEST=%CD%\pulled
-if [%TW5%]==[] SET TW5=..\TiddlyWiki5\archive\tiddlywiki.js
+echo PULL: clearing target folder: "pulled"
+mkdir %PULLED% 2> NUL & del /Q %PULLED%
 
-echo PULL: clearing target folder (content)
-mkdir %DEST% 2> NUL & del /Q %DEST%
+echo PULL: fetching tiddlers from remote TiddlySpaces:
+echo PULL:    http://tiddlywiki-com.tiddlyspace.com
+echo PULL:    http://tiddlywiki-com-ref.tiddyspace.com
+echo PULL: exclude
+echo PULL:    tag:systemConfig
+echo PULL:    PageTemplate
+echo PULL:    SiteSubtitle
+echo PULL:    SiteTitle
+echo PULL: include
+echo PULL:    DownloadTiddlyWikiPlugin
+echo PULL:    SimpleSearchPlugin
+echo PULL:    ExamplePlugin
+echo PULL:    SplashScreenPlugin
 
-echo PULL: fetching tiddlers from remote TiddlySpaces
-echo * tiddlywiki-com.tiddlyspace.com AND tiddlywiki-com-ref.tiddyspace.com
-echo * exclude tag:!systemConfig, PageTemplate, SiteSubtitle, SiteTitle
-echo * include DownloadTiddlyWikiPlugin, SimpleSearchPlugin,
-echo      ExamplePlugin, and SplashScreenPlugin
-node %TW5% --recipe pull.recipe --savetiddlers %DEST%
+node %TW5% --recipe pull.recipe --savetiddlers %PULLED%
 
 echo PULL: done
