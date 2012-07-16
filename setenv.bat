@@ -21,7 +21,3 @@ REM http://www.grigsoft.com/download-windiff.htm
 REM SET DIFF="C:\Program Files\WinDiff\WinDiff.exe"
 REM http://www.prestosoft.com/edp_examdiff.asp
 SET DIFF="C:\Program Files\ExamDiff\ExamDiff.exe"
-
-REM *** SECURE SHELL / SECURE COPY (for UPLOAD.BAT)
-REM http://winscp.net/eng/download.php
-SET SCP=REM (disabled) "C:\Program Files\WinSCP\WinSCP.exe" "scp://%REMOTE_USER%@%HOST%"
