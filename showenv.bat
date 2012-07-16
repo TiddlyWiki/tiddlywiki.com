@@ -7,13 +7,7 @@ echo PULLED     =%PULLED%
 echo DEST       =%DEST%
 echo TEST       =%TEST%
 echo TW5        =%TW5%
+echo CURL       =%CURL%
 echo DIFF       =%DIFF%
-echo REMOTE_USER=%REMOTE_USER%
-echo HOST       =%HOST%
-echo DIR        =%DIR%
-echo ARCHIVE_DIR=%ARCHIVE_DIR%
-echo OWNER      =%OWNER%
-echo PERM       =%PERM%
-echo UPLOADLIST =%UPLOADLIST%
-echo SCP        =%SCP%
+echo TW5DEBUG   =%TW5DEBUG%
 pause
