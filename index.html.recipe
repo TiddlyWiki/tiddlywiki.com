@@ -1,2 +1,7 @@
-recipe: ../tiddlywiki/tiddlywiki.html.recipe
-recipe: pulled/split.recipe
+recipe: ../tiddlywiki/tiddlywikinosaver.html.recipe
+tiddler: pulled/tiddlywiki-com-ref.tiddlers.json
+tiddler: pulled/tiddlywiki-com.tiddlers.json
+tiddler: pulled/DownloadTiddlyWikiPlugin.json
+tiddler: pulled/SimpleSearchPlugin.json
+tiddler: pulled/ExamplePlugin.json
+#tiddler: pulled/SplashScreenPlugin.json
