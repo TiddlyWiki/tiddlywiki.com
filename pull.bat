@@ -8,11 +8,13 @@ echo PULL: fetching tiddlers from remote TiddlySpaces:
 echo PULL:    http://tiddlywiki-com.tiddlyspace.com
 echo PULL:    http://tiddlywiki-com-ref.tiddyspace.com
 echo PULL: exclude
-echo PULL:    tag:systemConfig
+echo PULL:    tag:systemConfig (except for plugins below)
 echo PULL:    PageTemplate
 echo PULL:    SiteSubtitle
 echo PULL:    SiteTitle
-echo PULL: include
+echo PULL:    tiddlywiki-comSetupFlag
+echo PULL:    tiddlywiki-com-refSetupFlag
+echo PULL: include plugins
 echo PULL:    DownloadTiddlyWikiPlugin
 echo PULL:    SimpleSearchPlugin
 echo PULL:    ExamplePlugin
