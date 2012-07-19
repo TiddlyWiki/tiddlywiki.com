@@ -18,7 +18,6 @@ echo PULL: include plugins
 echo PULL:    DownloadTiddlyWikiPlugin
 echo PULL:    SimpleSearchPlugin
 echo PULL:    ExamplePlugin
-echo PULL:    SplashScreenPlugin
 
 %CURL% -o %PULLED%/tiddlywiki-com-ref.tiddlers.json http://tiddlywiki-com-ref.tiddlyspace.com/bags/tiddlywiki-com-ref_public/tiddlers.json?fat=1;select=tag:!systemConfig;select=title:!PageTemplate;select=title:!SiteTitle;select=title:!SiteSubtitle;select=title:!tiddlywiki-com-refSetupFlag 2> NUL
 
@@ -29,7 +28,5 @@ echo PULL:    SplashScreenPlugin
 %CURL% -o %PULLED%/SimpleSearchPlugin.json http://tiddlywiki-com.tiddlyspace.com/bags/tiddlywiki-com_public/tiddlers.json?fat=1;select=title:SimpleSearchPlugin 2> NUL
 
 %CURL% -o %PULLED%/ExamplePlugin.json http://tiddlywiki-com.tiddlyspace.com/bags/tiddlywiki-com_public/tiddlers.json?fat=1;select=title:ExamplePlugin 2> NUL
-
-%CURL% -o %PULLED%/SplashScreenPlugin.json http://tiddlywiki-com.tiddlyspace.com/bags/tiddlywiki-com_public/tiddlers.json?fat=1;select=title:SplashScreenPlugin 2> NUL
 
 echo PULL: done

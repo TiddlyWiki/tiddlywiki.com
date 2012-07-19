@@ -8,7 +8,9 @@ start /min %DEST%
 echo - - - - - - - - - - - - - - -
 
 echo BUILD: assembling INDEX.HTML (v%RELEASE%)
-node %TW5% --verbose --load index.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/index.html text/plain
+pushd tw2gen
+node %TW5% --verbose --load ../index.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/index.html text/plain
+popd
 echo - - - - - - - - - - - - - - -
 
 echo BUILD: opening INDEX.HTML
