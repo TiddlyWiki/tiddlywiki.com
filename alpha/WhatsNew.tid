@@ -1,0 +1,67 @@
+title: WhatsNew
+type: text/x-tiddlywiki
+
+*backstage.cloak.style.height
+**TWC266: use findDocHeight() instead of findWindowHeight() when setting cloak height
+*backstage.preparePanel
+**TWC266: use findDocHeight() instead of findWindowHeight() when setting cloak height
+*commitSystemSettings
+**TWC266: always invoke autoSaveChanges
+***https://github.com/TiddlyWiki/tiddlywiki/issues/72
+*config.backstageTasks
+**TWC266:* removed "sync" item from array
+***https://github.com/TiddlyWiki/tiddlywiki/issues/57
+*config.commands.syncing
+**TWC266: removed all objects, methods and state variables related to sync mechanism
+***https://github.com/TiddlyWiki/tiddlywiki/issues/57
+*config.macros.sync
+**TWC266: removed all objects, methods and state variables related to sync mechanism
+***https://github.com/TiddlyWiki/tiddlywiki/issues/57
+*config.macros.timeline.refresh
+**TWC266: handle sort prefix on fieldname for <<timeline {+|-}fieldname ...>>
+***https://github.com/TiddlyWiki/tiddlywiki/pull/82
+*config.syncers
+**TWC266: removed all objects, methods and state variables related to sync mechanism
+***https://github.com/TiddlyWiki/tiddlywiki/issues/57
+*config.tasks.sync
+**TWC266: removed all objects, methods and state variables related to sync mechanism
+***https://github.com/TiddlyWiki/tiddlywiki/issues/57
+*currSync
+**TWC266: removed all objects, methods and state variables related to sync mechanism
+***https://github.com/TiddlyWiki/tiddlywiki/issues/57
+*findDocHeight
+**TWC266: new global function
+*httpReq
+**TWC266: in options.beforeSend(), no longer adds "X-Requested-With" data to HTTP request header
+***https://github.com/TiddlyWiki/tiddlywiki/pull/87
+*JavaSaverStartup
+**TWC266: moved to follow jsdeprecatedArea and before POST-SCRIPT insertion point
+***https://github.com/TiddlyWiki/tiddlywiki/issues/69
+***https://github.com/TiddlyWiki/tiddlywiki/issues/70
+*refreshPageTemplate
+**TWC266: refactor local isAvailable() method as a common store object method
+***https://github.com/TiddlyWiki/tiddlywiki/issues/85
+*Story.prototype.forEachTiddler
+**TWC266: only process elements with title="..." attributes (skip non-tiddler elements)
+***https://github.com/TiddlyWiki/tiddlywiki/pull/63
+*Story.prototype.loadMissingTiddler
+**TWC266: preserve current 'dirty' flag when loading missing tiddlers
+***https://github.com/TiddlyWiki/tiddlywiki/pull/65
+***https://github.com/TiddlyWiki/tiddlywiki/pull/14
+***https://github.com/TiddlyWiki/tiddlywiki/pull/13
+*Story.prototype.switchTheme
+**TWC266: refactor local isAvailable() method as a common store object method
+***https://github.com/TiddlyWiki/tiddlywiki/issues/85
+*TiddlyWiki.prototype.isAvailable
+**TWC266: refactor local isAvailable() methods as a common store object method
+***https://github.com/TiddlyWiki/tiddlywiki/issues/85
+*TiddlyWiki.prototype.saveTiddler
+**TWC266: TiddlySpace compatibility: add defaultCustomFields if no fields are defined
+***https://github.com/TiddlyWiki/tiddlywiki/pull/56
+**TWC266: TiddlySpace compatibility: always set 'dirty' flag
+***https://github.com/TiddlyWiki/tiddlywiki/pull/65
+***https://github.com/TiddlyWiki/tiddlywiki/pull/14
+***https://github.com/TiddlyWiki/tiddlywiki/pull/13
+*UnicodeFunctions
+**TWC266: moved to separate "Filesystem Utilities" section following "Filesystem Code"
+***https://github.com/TiddlyWiki/tiddlywiki/pull/67
