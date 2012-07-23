@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# *** LOCAL TARGET PATHS and FILES
-RELEASE=
-PULLED=
-DEST=
-TEST=
-TW5=
