@@ -1,4 +1,6 @@
 title: HelloThere
 type: text/x-tiddlywiki
+modifier: EricShulman
 
-This is the ALPHA build greeting content.
+This is the ALPHA build of TiddlyWiki v<<version>>.
+

@@ -1,67 +1,15 @@
 title: WhatsNew
 type: text/x-tiddlywiki
+modifier: EricShulman
 
-*backstage.cloak.style.height
-**TWC266: use findDocHeight() instead of findWindowHeight() when setting cloak height
-*backstage.preparePanel
-**TWC266: use findDocHeight() instead of findWindowHeight() when setting cloak height
-*commitSystemSettings
-**TWC266: always invoke autoSaveChanges
-***https://github.com/TiddlyWiki/tiddlywiki/issues/72
-*config.backstageTasks
-**TWC266:* removed "sync" item from array
-***https://github.com/TiddlyWiki/tiddlywiki/issues/57
-*config.commands.syncing
-**TWC266: removed all objects, methods and state variables related to sync mechanism
-***https://github.com/TiddlyWiki/tiddlywiki/issues/57
-*config.macros.sync
-**TWC266: removed all objects, methods and state variables related to sync mechanism
-***https://github.com/TiddlyWiki/tiddlywiki/issues/57
-*config.macros.timeline.refresh
-**TWC266: handle sort prefix on fieldname for <<timeline {+|-}fieldname ...>>
-***https://github.com/TiddlyWiki/tiddlywiki/pull/82
-*config.syncers
-**TWC266: removed all objects, methods and state variables related to sync mechanism
-***https://github.com/TiddlyWiki/tiddlywiki/issues/57
-*config.tasks.sync
-**TWC266: removed all objects, methods and state variables related to sync mechanism
-***https://github.com/TiddlyWiki/tiddlywiki/issues/57
-*currSync
-**TWC266: removed all objects, methods and state variables related to sync mechanism
-***https://github.com/TiddlyWiki/tiddlywiki/issues/57
-*findDocHeight
-**TWC266: new global function
-*httpReq
-**TWC266: in options.beforeSend(), no longer adds "X-Requested-With" data to HTTP request header
-***https://github.com/TiddlyWiki/tiddlywiki/pull/87
-*JavaSaverStartup
-**TWC266: moved to follow jsdeprecatedArea and before POST-SCRIPT insertion point
-***https://github.com/TiddlyWiki/tiddlywiki/issues/69
-***https://github.com/TiddlyWiki/tiddlywiki/issues/70
-*refreshPageTemplate
-**TWC266: refactor local isAvailable() method as a common store object method
-***https://github.com/TiddlyWiki/tiddlywiki/issues/85
-*Story.prototype.forEachTiddler
-**TWC266: only process elements with title="..." attributes (skip non-tiddler elements)
-***https://github.com/TiddlyWiki/tiddlywiki/pull/63
-*Story.prototype.loadMissingTiddler
-**TWC266: preserve current 'dirty' flag when loading missing tiddlers
-***https://github.com/TiddlyWiki/tiddlywiki/pull/65
-***https://github.com/TiddlyWiki/tiddlywiki/pull/14
-***https://github.com/TiddlyWiki/tiddlywiki/pull/13
-*Story.prototype.switchTheme
-**TWC266: refactor local isAvailable() method as a common store object method
-***https://github.com/TiddlyWiki/tiddlywiki/issues/85
-*TiddlyWiki.prototype.isAvailable
-**TWC266: refactor local isAvailable() methods as a common store object method
-***https://github.com/TiddlyWiki/tiddlywiki/issues/85
-*TiddlyWiki.prototype.saveTiddler
-**TWC266: TiddlySpace compatibility: add defaultCustomFields if no fields are defined
-***https://github.com/TiddlyWiki/tiddlywiki/pull/56
-**TWC266: TiddlySpace compatibility: always set 'dirty' flag
-***https://github.com/TiddlyWiki/tiddlywiki/pull/65
-***https://github.com/TiddlyWiki/tiddlywiki/pull/14
-***https://github.com/TiddlyWiki/tiddlywiki/pull/13
-*UnicodeFunctions
-**TWC266: moved to separate "Filesystem Utilities" section following "Filesystem Code"
-***https://github.com/TiddlyWiki/tiddlywiki/pull/67
+The following is a summary of user-level feature changes in TiddlyWiki v2.6.6:
+!!!SystemSettings autosave
+>Updates to the SystemSettings tiddler (i.e., when you change a persistent option checkbox or text input) will now trigger autosave handling if chkAutoSave is enabled.
+!!!Sync machine
+>The backstage "sync" command and internal "sync machine" handling has been removed from the TiddlyWiki core code. Sync functionality will be migrated to an optional plugin in a future release (schedule to be determined).
+!!!Backstage cloak
+>The "backstage cloak" (shading applied to the document when the backstage is displayed) now matches document height instead of window height.
+!!!Unsaved changes ('dirty' flag)
+>Whenever a tiddler is changed, the document will always be marked as 'dirty' to indicate that there are pending unsaved changes.  Previously, setting this flag was bypassed when viewing remotely-hosted documents (e.g., TiddlySpace).
+!!!TiddlySpace: defaultCustomFields
+>Saving a tiddler automatically adds "defaultCustomFields" (when no other fields are defined).  This allows tiddlers that are created/modified by existing TiddlyWiki plugins to be properly saved to a remote TiddlySpace.  Note: currently, defaultCustomFields are only being used with TiddlySpace, so this change will have no effect when saving tiddlers in a standard file-based (i.e. non-TiddlySpace) TiddlyWiki document.
