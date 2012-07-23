@@ -1,6 +1,6 @@
 @ECHO OFF
 call setenv %1
-set DEST=%DEST%\alpha
+set DEST=%CD%\cooked\%RELEASE%\alpha
 
 echo BUILD: clearing target folder: "cooked/%RELEASE%/alpha"
 mkdir  cooked 2> NUL
