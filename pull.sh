@@ -1,65 +1,33 @@
 #!/bin/sh
-#
-# this hack pulls down the wikis for each bag, splitting the wiki into tiddlers using ginsu
-# long term plan is to use the "fat" JSON for a bag
-#
+# pulls down the "fat" JSON for each bag
 
-set -e
-export space
-export dir
+echo PULL: clearing target folder: "pulled"
+mkdir -p $pulled
+rm -f $pulled/*
 
-mkdir -p tmp
+echo PULL: fetching tiddlers from remote TiddlySpaces:
+echo PULL:    http://tiddlywiki-com.tiddlyspace.com
+echo PULL:    http://tiddlywiki-com-ref.tiddyspace.com
+echo PULL: exclude
+echo PULL:    tag:systemConfig (except for plugins below)
+echo PULL:    PageTemplate
+echo PULL:    SiteSubtitle
+echo PULL:    SiteTitle
+echo PULL:    tiddlywiki-comSetupFlag
+echo PULL:    tiddlywiki-com-refSetupFlag
+echo PULL: include plugins
+echo PULL:    DownloadTiddlyWikiPlugin
+echo PULL:    SimpleSearchPlugin
+echo PULL:    ExamplePlugin
 
-for space in tiddlywiki-com-ref tiddlywiki-com
-do
-	mkdir -p $space
+curl -o $pulled/tiddlywiki-com-ref.tiddlers.json http://tiddlywiki-com-ref.tiddlyspace.com/bags/tiddlywiki-com-ref_public/tiddlers.json?fat=1;select=tag:!systemConfig;select=title:!PageTemplate;select=title:!SiteTitle;select=title:!SiteSubtitle;select=title:!tiddlywiki-com-refSetupFlag
 
-	dir=tmp/${space}.html.0
-	curl -s http://${space}.tiddlyspace.com/bags/${space}_public/tiddlers.wiki > tmp/$space.html
+curl -o $pulled/tiddlywiki-com.tiddlers.json http://tiddlywiki-com.tiddlyspace.com/bags/tiddlywiki-com_public/tiddlers.json?fat=1;select=tag:!systemConfig;select=title:!PageTemplate;select=title:!SiteTitle;select=title:!SiteSubtitle;select=title:!tiddlywiki-comSetupFlag
 
-	# clear out the space directory so we can see deleted files when we commit
-	rm -f $space/*
+curl -o $pulled/DownloadTiddlyWikiPlugin.json http://tiddlywiki-com.tiddlyspace.com/bags/tiddlywiki-com_public/tiddlers.json?fat=1;select=title:DownloadTiddlyWikiPlugin
 
-	# backup any existing exploded content
-	mkdir -p backups
-	[ -d $dir ] && mv $dir backups/$$
+curl -o $pulled/SimpleSearchPlugin.json http://tiddlywiki-com.tiddlyspace.com/bags/tiddlywiki-com_public/tiddlers.json?fat=1;select=title:SimpleSearchPlugin
 
-	# split into tiddlers
-	(
-		cd tmp
-		ginsu $space > /dev/null
-	)
+curl -o $pulled/ExamplePlugin.json http://tiddlywiki-com.tiddlyspace.com/bags/tiddlywiki-com_public/tiddlers.json?fat=1;select=title:ExamplePlugin
 
-	# convert .tiddler files into .tid files
-	(
-		cd "$dir"
-
-		tiddler2tid *.tiddler
-		find . -name \*.tid -o -name \*.js -o -name \*.meta |
-			while read file
-			do
-				sed -e '/^server.*: /d' -e '/^_hash:/d' < "$file" > "../../$space/$file"
-			done
-	)
-
-	# make recipe based on files in the space directory
-	(
-		cd $space
-
-		find . -name \*.tid -o -name \*.js |
-			grep -v '\.jpg\.' |
-			grep -v 'PageTemplate' |
-#			grep -v 'SplashScreen' |
-			grep -v 'SiteSubtitle' |
-			sed 's/^/tiddler: /' > split.recipe
-	)
-done
-
-# added by ELS for compatibility with new "pulled" target directory
-mkdir -p pulled
-cp tiddlywiki-com-ref/* pulled
-cp tiddlywiki-com/* pulled
-cat tiddlywiki-com-ref/split.recipe >pulled/split.recipe
-cat tiddlywiki-com/split.recipe >>pulled/split.recipe
-
-cook $PWD/index.html.recipe
+echo PULL: done
