@@ -2,5 +2,6 @@ title: HelloThere
 type: text/x-tiddlywiki
 modifier: EricShulman
 
-This is the ALPHA build of TiddlyWiki v<<version>>.
+This is the ALPHA build of ~TiddlyWiki v<<version>>, and incorporates all changes already committed to the [[TiddlyWiki source repository|http://github.com/tiddlywiki/tiddlywiki]], including several enhancements to key functions and objects to increase stability, as well as an internal update to use jQuery v1.7.2 (previously releases used jQuery 1.6.4).
 
+This version of ~TiddlyWiki "Classic" is the first to use ~TiddlyWiki5 to assemble and output the core system, rather than the old Ruby-based ginsu/cook utilities that were previously used.  The ability of ~TiddlyWiki5 to directly create ~TiddlyWiki Classic documents ensures a robust and reliable future for the existing "installed base" of ~TiddlyWiki, even as the community migrates to using the new power and flexiblity of ~TiddlyWiki5.

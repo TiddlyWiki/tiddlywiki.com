@@ -13,23 +13,23 @@ The following is a summary of changes to internal core objects and methods in Ti
 >https://github.com/TiddlyWiki/tiddlywiki/issues/57
 !!!TiddlyWiki.prototype.saveTiddler
 >TiddlySpace compatibility: add defaultCustomFields if no fields are defined, always set 'dirty' flag, even if not "file://"
->https://github.com/TiddlyWiki/tiddlywiki/pull/65
->https://github.com/TiddlyWiki/tiddlywiki/pull/14
->https://github.com/TiddlyWiki/tiddlywiki/pull/13
+>https://github.com/TiddlyWiki/tiddlywiki/issues/65
+>https://github.com/TiddlyWiki/tiddlywiki/issues/14
+>https://github.com/TiddlyWiki/tiddlywiki/issues/13
 !!!config.macros.timeline.refresh
 >handle sort prefix on fieldname for {{{<<timeline {+|-}fieldname ...>>}}}
->https://github.com/TiddlyWiki/tiddlywiki/pull/82
+>https://github.com/TiddlyWiki/tiddlywiki/issues/82
 !!!httpReq
 >in options.beforeSend(), do not add "X-Requested-With" data to HTTP request header
->https://github.com/TiddlyWiki/tiddlywiki/pull/87
+>https://github.com/TiddlyWiki/tiddlywiki/issues/87
 !!!Story.prototype.forEachTiddler
 >only process elements with title="..." attributes (skip non-tiddler elements)
->https://github.com/TiddlyWiki/tiddlywiki/pull/63
+>https://github.com/TiddlyWiki/tiddlywiki/issues/63
 !!!Story.prototype.loadMissingTiddler
 >preserve current 'dirty' flag when loading missing tiddlers
->https://github.com/TiddlyWiki/tiddlywiki/pull/65
->https://github.com/TiddlyWiki/tiddlywiki/pull/14
->https://github.com/TiddlyWiki/tiddlywiki/pull/13
+>https://github.com/TiddlyWiki/tiddlywiki/issues/65
+>https://github.com/TiddlyWiki/tiddlywiki/issues/14
+>https://github.com/TiddlyWiki/tiddlywiki/issues/13
 !!!refreshPageTemplate, Story.prototype.switchTheme, TiddlyWiki.prototype.isAvailable
 >refactor local isAvailable() methods as a common store object method
 >https://github.com/TiddlyWiki/tiddlywiki/issues/85
@@ -39,4 +39,4 @@ The following is a summary of changes to internal core objects and methods in Ti
 >https://github.com/TiddlyWiki/tiddlywiki/issues/70
 !!!UnicodeFunctions
 >moved to separate "Filesystem Utilities" section following "Filesystem Code"
->https://github.com/TiddlyWiki/tiddlywiki/pull/67
+>https://github.com/TiddlyWiki/tiddlywiki/issues/67

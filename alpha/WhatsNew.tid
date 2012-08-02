@@ -2,14 +2,9 @@ title: WhatsNew
 type: text/x-tiddlywiki
 modifier: EricShulman
 
-The following is a summary of user-level feature changes in TiddlyWiki v2.6.6:
-!!!SystemSettings autosave
->Updates to the SystemSettings tiddler (i.e., when you change a persistent option checkbox or text input) will now trigger autosave handling if chkAutoSave is enabled.
-!!!Sync machine
->The backstage "sync" command and internal "sync machine" handling has been removed from the TiddlyWiki core code. Sync functionality will be migrated to an optional plugin in a future release (schedule to be determined).
-!!!Backstage cloak
->The "backstage cloak" (shading applied to the document when the backstage is displayed) now matches document height instead of window height.
-!!!Unsaved changes ('dirty' flag)
->Whenever a tiddler is changed, the document will always be marked as 'dirty' to indicate that there are pending unsaved changes.  Previously, setting this flag was bypassed when viewing remotely-hosted documents (e.g., TiddlySpace).
-!!!TiddlySpace: defaultCustomFields
->Saving a tiddler automatically adds "defaultCustomFields" (when no other fields are defined).  This allows tiddlers that are created/modified by existing TiddlyWiki plugins to be properly saved to a remote TiddlySpace.  Note: currently, defaultCustomFields are only being used with TiddlySpace, so this change will have no effect when saving tiddlers in a standard file-based (i.e. non-TiddlySpace) TiddlyWiki document.
+The following is a summary of notable user-level feature changes in ~TiddlyWiki v<<version>>:
+*''~SystemSettings autosave''<br>Updates to the ~SystemSettings tiddler (i.e., when you change a persistent option checkbox or text input) will now trigger autosave handling if chkAutoSave is enabled.
+*''Sync machine removed''<br>The backstage "sync" command and internal "sync machine" handling has been removed from the ~TiddlyWiki core code. Sync functionality will be migrated to an optional plugin in a future release (schedule to be determined).
+*''Backstage "cloak" size''<br>The "backstage cloak" (shading applied to the document when the backstage is displayed) now matches document height instead of window height.
+*''~TiddlySpace: defaultCustomFields''<br>Saving a tiddler automatically adds "defaultCustomFields" (when no other fields are defined).  This allows tiddlers that are created/modified by existing ~TiddlyWiki plugins to be properly saved to a remote ~TiddlySpace.  //Note: currently, defaultCustomFields are only being used with ~TiddlySpace, so this change will have no effect when saving tiddlers in a standard file-based (i.e. non-~TiddlySpace) ~TiddlyWiki document.//
+*''Unsaved changes ('dirty' flag)''<br>Whenever a tiddler is changed, the document will always be marked as 'dirty' to indicate that there are pending unsaved changes.  Previously, setting this flag was bypassed when viewing remotely-hosted documents (e.g., ~TiddlySpace).
