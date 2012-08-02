@@ -1,0 +1,5 @@
+recipe: ../tiddlywiki/tiddlywiki.html.recipe
+tiddler: alpha/DefaultTiddlers.tid
+tiddler: alpha/HelloThere.tid
+tiddler: alpha/WhatsNew.tid
+tiddler: alpha/TiddlyWiki266Changes.tid

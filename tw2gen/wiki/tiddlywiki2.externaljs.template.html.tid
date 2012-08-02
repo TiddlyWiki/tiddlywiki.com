@@ -1,0 +1,7 @@
+title: $:/core/templates/tiddlywiki2.externaljs.template.html
+type: text/x-tiddlywiki-html
+
+<<serialize "[prefix[{prejs}]]" text/plain-strip-comments>>
+<<serialize "[prefix[{js}]]" text/plain-strip-comments>>
+<<serialize "[prefix[{postjs}]]" text/plain-strip-comments>>
+<<serialize "[prefix[{jsext}]]" text/plain-strip-comments>>

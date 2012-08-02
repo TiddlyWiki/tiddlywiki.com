@@ -1,3 +1,6 @@
 recipe: ../tiddlywiki/tiddlywikinosaver.html.recipe
-recipe: tiddlywiki-com-ref/split.recipe
-recipe: tiddlywiki-com/split.recipe
+tiddler: pulled/tiddlywiki-com-ref.tiddlers.json
+tiddler: pulled/tiddlywiki-com.tiddlers.json
+tiddler: pulled/DownloadTiddlyWikiPlugin.json
+tiddler: pulled/SimpleSearchPlugin.json
+tiddler: pulled/ExamplePlugin.json
