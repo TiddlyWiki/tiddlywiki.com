@@ -8,11 +8,32 @@ mkdir  cooked/%RELEASE% 2> NUL
 mkdir  %DEST% 2> NUL & del /Q %DEST%
 start /min %DEST%
 echo - - - - - - - - - - - - - - -
-
-echo BUILD: assembling INDEX.HTML (v%RELEASE% alpha)
+echo BUILD: creating INDEX.HTML (v%RELEASE% alpha)
 pushd tw2gen
 node %TW5% --verbose --load ../alpha.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/index.html text/plain
+echo - - - - - - - - - - - - - - -
+echo BUILD: creating TIDDLYWIKI_EXTERNALJS.HTML (v%RELEASE% alpha)
+node %TW5% --verbose --load ../../tiddlywiki/tiddlywiki_externaljs.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/tiddlywiki_externaljs.html text/plain
+echo - - - - - - - - - - - - - - -
+echo BUILD: creating TIDDLYWIKI_EXTERNALJS_TIDDLYSPACE.HTML (v%RELEASE% alpha)
+node %TW5% --verbose --load ../../tiddlywiki/tiddlywiki_externaljs_tiddlyspace_alpha.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/tiddlywiki_externaljs_tiddlyspace.html text/plain
+echo - - - - - - - - - - - - - - -
+echo BUILD: creating TWCORE.JS
+node %TW5% --verbose --load ../../tiddlywiki/tiddlywikinosaver.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.externaljs.template.html %DEST%/twcore.js text/plain
+echo - - - - - - - - - - - - - - -
+echo BUILD: *** TBD *** creating TIDDLYWIKI_COMPRESSED.HTML
+REM cook $RECIPE -d $OUTPUT_DIR -o tiddlywiki_compressed.$RELEASE.html -cr -Cr -Dr
+REM REPLACE cook ^^^ WITH nodejs TW5
+echo - - - - - - - - - - - - - - -
 popd
+echo BUILD: copying TIDDLYSAVER.JAR
+copy ..\tiddlywiki\java\TiddlySaver.jar %DEST% 1> NUL
+echo - - - - - - - - - - - - - - -
+echo BUILD: copying JQUERY.JS
+copy ..\tiddlywiki\jquery\jquery.js %DEST% 1> NUL
+echo - - - - - - - - - - - - - - -
+echo BUILD: copying JQUERY.TWSTYLESHEET.JS
+copy ..\tiddlywiki\jquery\plugins\jQuery.twStylesheet.js %DEST% 1> NUL
 echo - - - - - - - - - - - - - - -
 
 echo BUILD: opening INDEX.HTML
@@ -21,10 +42,6 @@ pushd %DEST%
 start index.html
 popd
 pause
-echo - - - - - - - - - - - - - - -
-
-echo BUILD: copying TIDDLYSAVER.JAR
-copy ..\tiddlywiki\java\TiddlySaver.jar %DEST% 1> NUL
 echo - - - - - - - - - - - - - - -
 
 echo BUILD: generating EMPTY.ZIP
