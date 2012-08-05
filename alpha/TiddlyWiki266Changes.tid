@@ -1,0 +1,42 @@
+title: TiddlyWiki266Changes
+type: text/x-tiddlywiki
+modifier: EricShulman
+
+The following is a summary of changes to internal core objects and methods in TiddlyWiki v<<version>>:
+!!!commitSystemSettings
+>Updates to the SystemSettings tiddler (i.e., when you change a persistent option checkbox or text input) will now trigger autosave handling if chkAutoSave is enabled.
+>https://github.com/TiddlyWiki/tiddlywiki/issues/72
+!!!backstage.cloak.style.height, backstage.preparePanel, findDocHeight
+>The "backstage cloak" (shading applied to the document when the backstage is displayed) now matches document height instead of window height.
+!!!config.backstageTasks, config.commands.syncing, config.macros.sync, config.syncers, config.tasks.sync, currSync
+>removed all objects, methods and state variables related to sync mechanism
+>https://github.com/TiddlyWiki/tiddlywiki/issues/57
+!!!TiddlyWiki.prototype.saveTiddler
+>TiddlySpace compatibility: add defaultCustomFields if no fields are defined, always set 'dirty' flag, even if not "file://"
+>https://github.com/TiddlyWiki/tiddlywiki/issues/65
+>https://github.com/TiddlyWiki/tiddlywiki/issues/14
+>https://github.com/TiddlyWiki/tiddlywiki/issues/13
+!!!config.macros.timeline.refresh
+>handle sort prefix on fieldname for {{{<<timeline {+|-}fieldname ...>>}}}
+>https://github.com/TiddlyWiki/tiddlywiki/issues/82
+!!!httpReq
+>in options.beforeSend(), do not add "X-Requested-With" data to HTTP request header
+>https://github.com/TiddlyWiki/tiddlywiki/issues/87
+!!!Story.prototype.forEachTiddler
+>only process elements with title="..." attributes (skip non-tiddler elements)
+>https://github.com/TiddlyWiki/tiddlywiki/issues/63
+!!!Story.prototype.loadMissingTiddler
+>preserve current 'dirty' flag when loading missing tiddlers
+>https://github.com/TiddlyWiki/tiddlywiki/issues/65
+>https://github.com/TiddlyWiki/tiddlywiki/issues/14
+>https://github.com/TiddlyWiki/tiddlywiki/issues/13
+!!!refreshPageTemplate, Story.prototype.switchTheme, TiddlyWiki.prototype.isAvailable
+>refactor local isAvailable() methods as a common store object method
+>https://github.com/TiddlyWiki/tiddlywiki/issues/85
+!!!JavaSaverStartup
+>moved to follow jsdeprecatedArea and before POST-SCRIPT insertion point
+>https://github.com/TiddlyWiki/tiddlywiki/issues/69
+>https://github.com/TiddlyWiki/tiddlywiki/issues/70
+!!!UnicodeFunctions
+>moved to separate "Filesystem Utilities" section following "Filesystem Code"
+>https://github.com/TiddlyWiki/tiddlywiki/issues/67
