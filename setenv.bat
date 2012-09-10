@@ -15,6 +15,9 @@ REM *** CURL (for PULL.BAT)
 REM http://curl.haxx.se/download.html
 SET CURL="C:\Program Files\Curl\curl.exe"
 
+REM *** BROWSER (for BLD.BAT)
+SET BROWSER="C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
+
 REM *** FILE COMPARISON (for TEST.BAT)
 REM *** SELECT ONE OF THE FOLLOWING, OR INSTALL/CONFIGURE YOUR OWN PREFERRED PROGRAM
 REM http://www.grigsoft.com/download-windiff.htm
