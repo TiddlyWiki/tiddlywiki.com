@@ -16,7 +16,7 @@ echo - - - - - - - - - - - - - - -
 echo BUILD: opening INDEX.HTML
 echo BUILD: press "save changes" to generate EMPTY.HTML and INDEX.XML
 pushd %DEST%
-start index.html
+%BROWSER% index.html
 popd
 pause
 echo - - - - - - - - - - - - - - -

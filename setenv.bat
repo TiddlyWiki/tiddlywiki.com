@@ -2,7 +2,7 @@
 
 REM *** LOCAL TARGET PATHS and FILES
 IF [%RELEASE%]==[] SET RELEASE=%1
-IF [%RELEASE%]==[] SET RELEASE=2.6.6a
+IF [%RELEASE%]==[] SET RELEASE=2.6.6
 IF [%PULLED%]==[]  SET PULLED=%CD%\pulled
 IF [%DEST%]==[]    SET DEST=%CD%\cooked\%RELEASE%
 if [%TEST%]==[]    SET TEST=%CD%\test\index.html
@@ -14,6 +14,9 @@ REM *** LOCAL UTILITY APPLICATIONS
 REM *** CURL (for PULL.BAT)
 REM http://curl.haxx.se/download.html
 SET CURL="C:\Program Files\Curl\curl.exe"
+
+REM *** BROWSER (for BLD.BAT)
+SET BROWSER="C:\Program Files (x86)\Mozilla Firefox\firefox.exe"
 
 REM *** FILE COMPARISON (for TEST.BAT)
 REM *** SELECT ONE OF THE FOLLOWING, OR INSTALL/CONFIGURE YOUR OWN PREFERRED PROGRAM
