@@ -1,21 +1,21 @@
 @ECHO OFF
 call setenv %1
-set DEST=%CD%\cooked\%RELEASE%\alpha
+set DEST=%CD%\cooked\%RELEASE%\beta
 
-echo BUILD: clearing target folder: "cooked/%RELEASE%/alpha"
+echo BUILD: clearing target folder: "cooked/%RELEASE%/beta"
 mkdir  cooked 2> NUL
 mkdir  cooked/%RELEASE% 2> NUL
 mkdir  %DEST% 2> NUL & del /Q %DEST%
 start /min %DEST%
 echo - - - - - - - - - - - - - - -
-echo BUILD: creating INDEX.HTML (v%RELEASE% alpha)
+echo BUILD: creating INDEX.HTML (v%RELEASE% beta)
 pushd tw2gen
-node %TW5% --verbose --load ../alpha.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/index.html text/plain
+node %TW5% --verbose --load ../beta.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/index.html text/plain
 echo - - - - - - - - - - - - - - -
-echo BUILD: creating TIDDLYWIKI_EXTERNALJS.HTML (v%RELEASE% alpha)
+echo BUILD: creating TIDDLYWIKI_EXTERNALJS.HTML (v%RELEASE% beta)
 node %TW5% --verbose --load ../../tiddlywiki/tiddlywiki_externaljs.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/tiddlywiki_externaljs.html text/plain
 echo - - - - - - - - - - - - - - -
-echo BUILD: creating TIDDLYWIKI_EXTERNALJS_TIDDLYSPACE.HTML (v%RELEASE% alpha)
+echo BUILD: creating TIDDLYWIKI_EXTERNALJS_TIDDLYSPACE.HTML (v%RELEASE% beta)
 node %TW5% --verbose --load ../../tiddlywiki/tiddlywiki_externaljs_tiddlyspace_alpha.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/tiddlywiki_externaljs_tiddlyspace.html text/plain
 echo - - - - - - - - - - - - - - -
 echo BUILD: creating TWCORE.JS
@@ -39,7 +39,7 @@ echo - - - - - - - - - - - - - - -
 echo BUILD: opening INDEX.HTML
 echo BUILD: press "save changes" to generate EMPTY.HTML and INDEX.XML
 pushd %DEST%
-start index.html
+%BROWSER% index.html
 popd
 pause
 echo - - - - - - - - - - - - - - -

@@ -1,0 +1,6 @@
+recipe: ../tiddlywiki/tiddlywiki.html.recipe
+tiddler: beta/SiteTitle.tid
+tiddler: beta/SiteSubtitle.tid
+tiddler: beta/DefaultTiddlers.tid
+tiddler: beta/HelloThere.tid
+tiddler: beta/WhatsNew.tid

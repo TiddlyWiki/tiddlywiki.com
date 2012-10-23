@@ -1,0 +1,12 @@
+title: HelloThere
+type: text/x-tiddlywiki
+modifier: EricShulman
+
+This is the PRE-RELEASE build of ~TiddlyWiki v<<version>>, and incorporates all changes currently committed to the [[TiddlyWiki source repository|http://github.com/tiddlywiki/tiddlywiki]], including several enhancements to key functions and objects, as well as an internal update to use a newer revision of jQuery (now v1.8.1)
+
+~TiddlyWiki "Classic" uses ~TiddlyWiki5-based tools to assemble and output the core system, rather than the Ruby-based ginsu/cook utilities that were previously used.  The ability of ~TiddlyWiki5 to directly create ~TiddlyWiki Classic documents ensures a robust and reliable future for the existing "installed base" of ~TiddlyWiki, even as the community migrates to using the new power and flexiblity of ~TiddlyWiki5.
+
+You can view/download versions of ~TiddlyWiki from the following locations:
+|current release of ~TiddlyWiki Classic|http://www.TiddlyWiki.com/|
+|latest pre-release of ~TiddlyWiki Classic|http://www.TiddlyWiki.com/beta/|
+|latest pre-release of ~TiddlyWiki5|http://five.TiddlyWiki.com/|
