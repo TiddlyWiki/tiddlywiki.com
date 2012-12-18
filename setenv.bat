@@ -2,7 +2,7 @@
 
 REM *** LOCAL TARGET PATHS and FILES
 IF [%RELEASE%]==[] SET RELEASE=%1
-IF [%RELEASE%]==[] SET RELEASE=2.7.0b1
+IF [%RELEASE%]==[] SET RELEASE=2.7.0
 IF [%PULLED%]==[]  SET PULLED=%CD%\pulled
 IF [%DEST%]==[]    SET DEST=%CD%\cooked\%RELEASE%
 if [%TEST%]==[]    SET TEST=%CD%\test\index.html

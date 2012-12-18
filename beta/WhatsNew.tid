@@ -5,3 +5,4 @@ modifier: EricShulman
 The following is a summary of notable user-level feature changes in ~TiddlyWiki v<<version>>:
 *''FireFox "privilege" handling''<br>Catch and supress "privilege" error messages in the TWCore backstage Import functions that use FireFox local file I/O or "ajax" remote (http) file access.
 *''TiddlySaver''<br>Changes in handling for filenames with Unicode/UTF-8 characters.  Updated new signed security certificate.
+*''backstage import''<br>Fixes for importing tiddlers from local files (must be in same directory as current document)
