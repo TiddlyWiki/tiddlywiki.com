@@ -15,27 +15,42 @@ The content for tiddlywiki.com is obtained from a [TiddlySpace](http://tiddlyspa
 Prerequisites
 -------------
 
-For the latest TiddlyWiki core source code, ensure that you have downloaded and installed the TiddlyWiki repository as described at https://github.com/TiddlyWiki/tiddlywiki
+The following steps prepare your machine for building tiddlywiki.com.
 
-To build TiddlyWiki locally, ensure that you have downloaded and installed TiddlyWiki5 as described at https://github.com/jermolene/tiddlywiki5
+1. Install the latest version of `nodejs` from http://www.nodejs.org
+2. If necessary, install the command line tool `curl` to retrieve content from TiddlySpace. For Windows systems, it can be downloaded from http://curl.haxx.se/download.html
+3. If necessary, install a `diff` program to compare versions of TiddlyWiki for testing after building. Mac OS X users can use `opendiff` that ships with XCode. Two options for Windows users are [WinDiff](http://www.grigsoft.com/download-windiff.htm) and [ExamDiff](http://www.prestosoft.com/edp_examdiff.asp)
+4. Download the following repositories from GitHub:
+	5. https://github.com/TiddlyWiki/TiddlyWiki for the TiddlyWiki core source code
+	6. https://github.com/Jermolene/TiddlyWiki5 for TiddlyWiki5
+	7. https://github.com/TiddlyWiki/tiddlywiki.github.com for the TiddlyWiki GitHub Pages (only required if you are actually publishing the build to tiddlywiki.com)
 
-To publish a new release of TiddlyWiki, ensure that you have downloaded and installed the TiddlyWiki "GitHub Pages" repository as described at https://github.com/TiddlyWiki/tiddlywiki.github.com
+The recommended directory structure for downloading the repositories is as follows:
 
-You need `nodejs` to build tiddlywiki.com. If you do not have it installed, it can be downloaded [here](http://www.nodejs.org)
-
-You need `curl` to retrieve content from [TiddlySpace].  This is a standard command-line utility for Unix-based systems.  For Windows-based systems, it can be downloaded [here](http://curl.haxx.se/download.html)
-
-You need a `diff` program to compare versions of TiddlyWiki (for testing after building).  This is a standard command-line utility for Unix-based systems.  For Windows-based systems, there are several applications to choose from.  Here are two alternatives:
-[WinDiff](http://www.grigsoft.com/download-windiff.htm) and [ExamDiff](http://www.prestosoft.com/edp_examdiff.asp)
+	+--- MyTiddlyWikiBuildDir
+			|
+			+--- TiddlyWiki
+			|		|
+			|		+--- TiddlyWiki
+			|		|
+			|		+--- tiddlywiki.github.com
+			|
+			+--- Jermolene
+					|
+					+--- TiddlyWiki5
 
 Building tiddlywiki.com
 -----------------------
+
+## Checkout TiddlyWiki core code
 
 After downloading and installing TiddlyWiki checkout the version of TiddlyWiki that you wish to use for tiddlywiki.com. Ongoing development occurs in the tiddlywiki repository, so you need to checkout a tagged release version of TiddlyWiki. Change to the tiddlywiki directory and checkout the required version, eg:
 
     git checkout tags/v2.6.5
 
 Change back to the tiddlywiki.com directory.
+
+## Setting up batch files
 
 The tiddlywiki.com build process is divided into several parts: `setenv`, `pull`, `bld`, and `test`.  You can run each part separately, or invoke a complete build sequence by running `maketw`, which then automatically calls upon each separate part of the process.
 
