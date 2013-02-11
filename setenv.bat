@@ -7,8 +7,8 @@ IF [%PULLED%]==[]  SET PULLED=%CD%\pulled
 IF [%DEST%]==[]    SET DEST=%CD%\cooked\%RELEASE%
 if [%TEST%]==[]    SET TEST=%CD%\test\index.html
 if NOT [%2]==[]    SET TEST=%CD%\test\index.%2.html
-if [%TW5%]==[]     SET TW5=..\..\jermolene\tiddlywiki5\tiddlywiki.js
-if [%TW5DIR%]==[]     SET TW5DIR=..\..\jermolene\tiddlywiki5\
+if [%TW5%]==[]     SET TW5=%CD%\..\..\jermolene\tiddlywiki5\tiddlywiki.js
+if [%TW5DIR%]==[]     SET TW5DIR=%CD%\..\..\jermolene\tiddlywiki5\
 
 REM *** LOCAL UTILITY APPLICATIONS
 
