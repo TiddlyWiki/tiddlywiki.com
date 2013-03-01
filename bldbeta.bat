@@ -9,23 +9,25 @@ mkdir  %DEST% 2> NUL & del /Q %DEST%
 start /min %DEST%
 echo - - - - - - - - - - - - - - -
 echo BUILD: creating INDEX.HTML (v%RELEASE% beta)
-pushd tw2gen
-node %TW5% --verbose --load ../beta.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/index.html text/plain
+
+node %TW5% %TW5DIR%/editions/tw2 --verbose --load ./index.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/index.html text/plain
+
+
+node %TW5% %TW5DIR%/editions/tw2 --verbose --load ./beta.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/index.html text/plain
 echo - - - - - - - - - - - - - - -
 echo BUILD: creating TIDDLYWIKI_EXTERNALJS.HTML (v%RELEASE% beta)
-node %TW5% --verbose --load ../../tiddlywiki/tiddlywiki_externaljs.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/tiddlywiki_externaljs.html text/plain
+node %TW5% %TW5DIR%/editions/tw2 --verbose --load ../tiddlywiki/tiddlywiki_externaljs.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/tiddlywiki_externaljs.html text/plain
 echo - - - - - - - - - - - - - - -
 echo BUILD: creating TIDDLYWIKI_EXTERNALJS_TIDDLYSPACE.HTML (v%RELEASE% beta)
-node %TW5% --verbose --load ../../tiddlywiki/tiddlywiki_externaljs_tiddlyspace_alpha.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/tiddlywiki_externaljs_tiddlyspace.html text/plain
+node %TW5% %TW5DIR%/editions/tw2 --verbose --load ../tiddlywiki/tiddlywiki_externaljs_tiddlyspace_alpha.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.template.html %DEST%/tiddlywiki_externaljs_tiddlyspace.html text/plain
 echo - - - - - - - - - - - - - - -
 echo BUILD: creating TWCORE.JS
-node %TW5% --verbose --load ../../tiddlywiki/tiddlywikinosaver.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.externaljs.template.html %DEST%/twcore.js text/plain
+node %TW5% %TW5DIR%/editions/tw2 --verbose --load ../tiddlywiki/tiddlywikinosaver.html.recipe %TW5DEBUG% --savetiddler $:/core/templates/tiddlywiki2.externaljs.template.html %DEST%/twcore.js text/plain
 echo - - - - - - - - - - - - - - -
 echo BUILD: *** TBD *** creating TIDDLYWIKI_COMPRESSED.HTML
 REM cook $RECIPE -d $OUTPUT_DIR -o tiddlywiki_compressed.$RELEASE.html -cr -Cr -Dr
 REM REPLACE cook ^^^ WITH nodejs TW5
 echo - - - - - - - - - - - - - - -
-popd
 echo BUILD: copying TIDDLYSAVER.JAR
 copy ..\tiddlywiki\java\TiddlySaver.jar %DEST% 1> NUL
 echo - - - - - - - - - - - - - - -
