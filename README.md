@@ -20,10 +20,11 @@ The following steps prepare your machine for building tiddlywiki.com:
 1. Install the latest version of `nodejs` from http://www.nodejs.org
 2. If necessary, install the command line tool `curl` to retrieve content from TiddlySpace. For Windows systems, it can be downloaded from http://curl.haxx.se/download.html
 3. If necessary, install a `diff` program to compare versions of TiddlyWiki for testing after building. Mac OS X users can use `opendiff` that ships with XCode. Two options for Windows users are [WinDiff](http://www.grigsoft.com/download-windiff.htm) and [ExamDiff](http://www.prestosoft.com/edp_examdiff.asp)
-4. Checkout or download the following repositories from GitHub:
-	5. https://github.com/TiddlyWiki/TiddlyWiki for the TiddlyWiki core source code. You can either download the latest version or visit https://github.com/TiddlyWiki/tiddlywiki/tags to download a specific tagged version
-	6. https://github.com/Jermolene/TiddlyWiki5 for TiddlyWiki5
-	7. https://github.com/TiddlyWiki/tiddlywiki.github.com for the TiddlyWiki GitHub Pages (only required if you are actually publishing the build to tiddlywiki.com)
+4. If necessary, install phantomjs with `npm install -g phantomjs` (Phantomjs is currently only used by the OS X/Linux batch files)
+5. Checkout or download the following repositories from GitHub:
+	6. https://github.com/TiddlyWiki/TiddlyWiki for the TiddlyWiki core source code. You can either download the latest version or visit https://github.com/TiddlyWiki/tiddlywiki/tags to download a specific tagged version
+	7. https://github.com/Jermolene/TiddlyWiki5 for TiddlyWiki5
+	8. https://github.com/TiddlyWiki/tiddlywiki.github.com for the TiddlyWiki GitHub Pages (only required if you are actually publishing the build to tiddlywiki.com)
 
 The recommended directory structure for downloading the repositories is as follows:
 
@@ -42,11 +43,12 @@ The recommended directory structure for downloading the repositories is as follo
 Overview
 --------
 
+The batch files provided for Windows and OS X/Linux currently work slightly differently.
+
+Building tiddlywiki.com on Windows
+----------------------------------
+
 The tiddlywiki.com build process is divided into several parts: `setenv`, `pull`, `bld`, and `test`.  You can run each part separately, or invoke a complete build sequence by running `maketw`, which then automatically calls upon each separate part of the process.
-
-
-Building tiddlywiki.com
------------------------
 
 These steps should be performed with the current directory set to the tiddlywiki.com repository.
 
@@ -93,3 +95,12 @@ Finally, to publish the new release for use with TiddlySpace, you need to manual
     http://tiddlywiki-releases.tiddlyspace.com/x.y.z
 
 You need to be a member of the tiddlywiki-releases.tiddlyspace.com space to do this.
+
+Building tiddlywiki.com on Windows
+----------------------------------
+
+Execute `./bld.sh` to:
+
+* pull down the content from TiddlySpace
+* build TiddlyWiki using TW5
+* run the index.html  through Phantomjs to generate the RSS feed and `<title>` tag content
