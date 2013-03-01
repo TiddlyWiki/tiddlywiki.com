@@ -23,7 +23,7 @@ if [ -z "$TIDDLYWIKI_TEST" ]; then
 fi
 
 if [  -z "$TIDDLYWIKI5_DIR" ]; then
-    export TIDDLYWIKI5_DIR=../../Jermolene/TiddlyWiki5
+    export TIDDLYWIKI5_DIR=../TiddlyWiki5
 fi
 
 if [  -z "$TW5_BUILD_OUTPUT" ]; then
