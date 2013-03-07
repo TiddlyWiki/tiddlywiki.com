@@ -2,4 +2,4 @@ title: WhatsNew
 type: text/x-tiddlywiki
 modifier: EricShulman
 
-This revision corrects a Unicode/~UTF-8 character encoding error that was present within the body of the jQuery 1.8.1 code that was used to build ~TW2.7.0.  ~TiddlyWiki documents that contain ~UTF-8 encoded characters (e.g., content in a non-Latin language) should now be properly recognized and processed without automatic (and incorrect) conversion of multi-byte sequences that had previously resulted in "mangled" content.
+This revision includes only ONE significant change: the internal embedded copy of the jQuery library has been updated from v1.8.1 to v1.8.3 in order to correct a Unicode/UTF-8 character encoding error that was present within TW2.7.0.  This update should allow documents containing UTF-8 encoded characters (e.g., content in a non-Latin language) to be more consistently recognized and saved/loaded without 'mangling' those UTF-8 encoded characters.
