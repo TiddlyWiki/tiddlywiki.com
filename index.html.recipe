@@ -1,4 +1,4 @@
-recipe: ../../tiddlywiki/tiddlywiki/tiddlywikinosaver.html.recipe
+recipe: ../tiddlywiki/tiddlywikinosaver.html.recipe
 tiddler: pulled/tiddlywiki-com-ref.tiddlers.json
 tiddler: pulled/tiddlywiki-com.tiddlers.json
 tiddler: pulled/DownloadTiddlyWikiPlugin.json
