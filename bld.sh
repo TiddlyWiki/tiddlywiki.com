@@ -23,7 +23,7 @@ if [ -z "$TIDDLYWIKI_TEST" ]; then
 fi
 
 if [  -z "$TIDDLYWIKI5_DIR" ]; then
-    export TIDDLYWIKI5_DIR=../TiddlyWiki5
+    export TIDDLYWIKI5_DIR=../../Jermolene/TiddlyWiki5
 fi
 
 if [  -z "$TW5_BUILD_OUTPUT" ]; then
@@ -48,12 +48,15 @@ curl -o $TIDDLYWIKI_PULLED/SimpleSearchPlugin.json "http://tiddlywiki-com.tiddly
 
 curl -o $TIDDLYWIKI_PULLED/ExamplePlugin.json "http://tiddlywiki-com.tiddlyspace.com/bags/tiddlywiki-com_public/tiddlers.json?fat=1;select=title:ExamplePlugin"
 
-
 # Build TiddlyWiki
 
 node $TIDDLYWIKI5_DIR/tiddlywiki.js $TIDDLYWIKI5_DIR/editions/tw2 --verbose --load ./index.html.recipe --savetiddler $:/core/templates/tiddlywiki2.template.html $TIDDLYWIKI_DEST/index.html text/plain
 
-# Open TiddlyWiki in PhantomJS
+# Build tests
+
+node $TIDDLYWIKI5_DIR/tiddlywiki.js $TIDDLYWIKI5_DIR/editions/tw2 --verbose --load ../tiddlywiki/test/recipes/tests.html.recipe --savetiddler $:/core/templates/tiddlywiki2.template.html $TIDDLYWIKI_DEST/tests.html text/plain
+
+# Open TiddlyWiki in PhantomJS to save index.html, empty.html and index.xml
 phantomjs phantom_driver.js
 
 # Still to do: zipping up empty.zip
