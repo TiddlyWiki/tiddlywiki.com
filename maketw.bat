@@ -12,4 +12,3 @@ echo - - - - - - - - - - - - - - -
 call test %RELEASE% %2
 echo - - - - - - - - - - - - - - -
 echo MAKETW: done
-pause
