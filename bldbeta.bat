@@ -21,7 +21,7 @@ echo BUILD: creating TIDDLYWIKI_EXTERNALJS_TIDDLYSPACE.HTML (v%TIDDLYWIKI_RELEAS
 node %TIDDLYWIKI5_DIR%/tiddlywiki.js %TIDDLYWIKI5_DIR%/editions/tw2 --verbose --load ../tiddlywiki/tiddlywiki_externaljs_tiddlyspace_alpha.html.recipe --savetiddler $:/core/templates/tiddlywiki2.template.html %TIDDLYWIKI_DEST%/tiddlywiki_externaljs_tiddlyspace.html text/plain
 echo - - - - - - - - - - - - - - -
 echo BUILD: creating TWCORE.JS (v%TIDDLYWIKI_RELEASE% beta)
-node %TIDDLYWIKI5_DIR%/tiddlywiki.js %TIDDLYWIKI5_DIR%/editions/tw2 --verbose --load ../tiddlywiki/tiddlywikinosaver.html.recipe --savetiddler $:/core/templates/tiddlywiki2.template.html %TIDDLYWIKI_DEST%/twcore.js text/plain
+node %TIDDLYWIKI5_DIR%/tiddlywiki.js %TIDDLYWIKI5_DIR%/editions/tw2 --verbose --load ../tiddlywiki/tiddlywikinosaver.html.recipe --savetiddler $:/core/templates/tiddlywiki2.externaljs.template.html %TIDDLYWIKI_DEST%/twcore.js text/plain
 echo - - - - - - - - - - - - - - -
 REM
 REM
