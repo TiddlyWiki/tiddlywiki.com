@@ -2,7 +2,7 @@ title: HelloThere
 type: text/x-tiddlywiki
 modifier: EricShulman
 
-This is the PRE-RELEASE "beta" build of ~TiddlyWiki v<<version>>.
+This is the ~PRE-RELEASE "beta" build of ~TiddlyWiki v<<version>>.
 
 @@font-size:24pt;display:block;text-align:center;[[download now|http://www.TiddlyWiki.com/beta/empty.zip]]@@
 
