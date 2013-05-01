@@ -4,12 +4,10 @@ modifier: EricShulman
 
 This revision includes the following changes:
 *{{block{
-Backstage>import: now uses ~HTML5 "~FileReader" API whenever available (currently supported by Chrome, ~FireFox 20+, etc.).  See https://github.com/TiddlyWiki/tiddlywiki/issues/116.
-
-You can now successfully ''//select and import files that are outside of the current folder.//''  Note: this change only applies when you use the "browse" (or "select file") button to choose a document from your local filesystem.   If you manually enter (or paste) a local "file://" URL into the import form, the previous "loadFile" local file I/O handling is used, which requires the ~TiddlyFox addon (for ~FireFox 15+), or the ~TiddlySaver java applet (for Chrome, Safari, and other Webkit-based browsers).  Internet Explorer uses it's own native "~ActiveX" file I/O functions.
+Backstage>import: now uses ~HTML5 "~FileReader" API whenever available (currently supported by Chrome, ~FireFox 20+, etc.).  You can now successfully ''//select and import files that are outside of the current folder.//''  See https://github.com/TiddlyWiki/tiddlywiki/issues/116.  
+>Note: this change only applies when you use the "browse" (or "select file") button to choose a document from your local filesystem.   If you manually enter (or paste) a local "file://" URL into the import form, the previous "loadFile" local file I/O handling is used, which requires the ~TiddlyFox addon (for ~FireFox 15+), or the ~TiddlySaver java applet (for Chrome, Safari, and other Webkit-based browsers).  Internet Explorer uses it's own native "~ActiveX" file I/O functions.
 }}}
 *{{block{
-Internet Explorer: when using ~IE10 (or above), special-case handling of embedded newlines in ~PRE-formatted blocks is no longer applied.  See https://github.com/TiddlyWiki/tiddlywiki/issues/118.
-
-This corrects a formatting/display error introduced by changes in ~IE10. Special handling is still applied to embedded newlines in IE9 and earlier.
+Internet Explorer: when using ~IE10 (the current version of IE), special-case handling of embedded newlines in ~PRE-formatted blocks is no longer applied.  See https://github.com/TiddlyWiki/tiddlywiki/issues/118.  This corrects a formatting/display error introduced by changes in ~IE10.
+>Note: this change only applies to ~IE10 and above; special handling is still applied to embedded newlines in IE9 and earlier so there should be no change to existing content when viewed on IE9 or earlier.
 }}}
