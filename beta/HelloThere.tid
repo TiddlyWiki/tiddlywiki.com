@@ -2,7 +2,7 @@ title: HelloThere
 type: text/x-tiddlywiki
 modifier: EricShulman
 
-This is the PRE-RELEASE build of ~TiddlyWiki v<<version>>, and includes an internal update to use a newer revision of jQuery (from v1.8.1 to v1.8.3).
+This is the ~PRE-RELEASE "beta" build of ~TiddlyWiki v<<version>>.
 
 @@font-size:24pt;display:block;text-align:center;[[download now|http://www.TiddlyWiki.com/beta/empty.zip]]@@
 
