@@ -4,14 +4,17 @@ modifier: EricShulman
 
 This revision includes the following changes:
 *{{block{
-''Backstage>import:''
-See https://github.com/TiddlyWiki/tiddlywiki/issues/116
-Importing tiddlers now uses "~FileReader" API whenever available (currently supported by Chrome, Firefox 20+, etc.).  This new ~HTML5-standard browser-based file I/O handling ''//does not require any special privileges or security permissions//'' to read contents of files that you interactively select from your local filesystem, and you can now successfully ''//import tiddler from files that are outside of the current folder.//''
->Note: this change only applies when you use the "browse" (or "select file") button to interactively choose a document from your local filesystem.   If you manually enter (or paste) a local {{{file://}}} URL into the import form (or if ~FileReader handling is not supported by your browser version), the existing browser-specific file I/O functions are used, which requires security permissions and/or other add-ons to permit reading of file contents; e.g. ~TiddlyFox (~FireFox), ~TiddlySaver java applet (Chrome, Safari, Opera, etc.), or ~ActiveX (Internet Explorer).
+''~HTML5 "download" saving''
+When you invoke <<saveChanges>>, ~TiddlyWiki attempts to use browser-specific //direct file I/O// functions to read/write locally stored files.  Unfortunately, many newer browsers block use of these functions unless you grant special permissions and/or install browser add-ons (e.g. ~TiddlyFox, ~TiddlySaver, or ~ActiveX) to enable reading/writing of local file contents.  In ~TiddlyWiki version 2.7.x and earlier, when direct file I/O functions are not available, ~TiddlyWiki is unable to save the document and simply reports an error to that effect.  ''~TiddlyWiki version 2.8.0 introduces new fallback handling for saving your changes when direct file I/O is not available.''
+
+The new handling permits ~HTML5-compatible browsers to ''"download" the current document from active browser memory (including any unsaved changes)'' by triggering the familiar "download a file" dialog(s) provided by your browser.  This process typically allows you to accept/deny the "download" of your updated document file and, depending upon your browser's settings, select the location (path and filename) in which to save it, ''//without requiring any special security permissions or browser add-ons//.''
+
+In addition to working with local documents, the new fallback method can also be used to view //and// ''edit a ~TiddlyWiki document that has been posted online, without first needing to download and open a local copy''.  When you select <<saveChanges>>, the online document -- including any changes you've made -- is downloaded to your local filesystem.  You can then open the local copy to continue editing and update the local file using direct file I/O (if enabled) or fallback "download" handling to overwrite the local file if direct file I/O is not enabled.
+
+//Note: Currently, the fallback "download" method can only be used to save the main ~TiddlyWiki document file and does not generate and save backup files, XML files (for RSS feeds) or new blank files ("empty.html"), even if these options are selected in [[AdvancedOptions]].  To save these additional locally-stored files, a direct file I/O method must be enabled (i.e., permissions granted and/or add-ons installed).//
+
 }}}
 *{{block{
-''Internet Explorer:''
-See https://github.com/TiddlyWiki/tiddlywiki/issues/118
-When using ~IE10 (the current version of IE), special-case handling of embedded newlines in ~PRE-formatted blocks is no longer applied.  This corrects a formatting/display error introduced by changes in ~IE10.
->Note: this change only applies to ~IE10 and above; special handling is still applied to embedded newlines in ~IE9 and earlier so there should be no change to existing content when viewed on ~IE9 or earlier.
+''manual download saving''
+If direct file I/O is unavailable ''//and the ~HTML5 "download" feature is not supported by your browser//'' (i.e, you are using an older browser), ~TiddlyWiki will display linked message text in the upper-right corner "message area".  This link contains the entire document content (including your changes), encoded a special data:// URI.  When you right-click and select "save link as..." from the link's popup menu, it triggers the same browser-provided "download a file" interactive process outlined above, allowing you to save the encoded link content as a file on your local filesystem.
 }}}

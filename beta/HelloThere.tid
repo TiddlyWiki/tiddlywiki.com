@@ -2,14 +2,11 @@ title: HelloThere
 type: text/x-tiddlywiki
 modifier: EricShulman
 
-This is the ~PRE-RELEASE "beta" build of ~TiddlyWiki v<<version>>.
+''This is the ~PRE-RELEASE "beta" build of ~TiddlyWiki v<<version>>.''
 
-@@font-size:24pt;display:block;text-align:center;[[download now|http://www.TiddlyWiki.com/beta/empty.zip]]@@
+@@font-size:24pt;[[download now...|http://www.TiddlyWiki.com/beta/empty.zip]]@@
 
-~TiddlyWiki "Classic" uses ~TiddlyWiki5-based tools to assemble and output the core system, rather than the Ruby-based ginsu/cook utilities that were previously used.  The ability of ~TiddlyWiki5 to directly create ~TiddlyWiki Classic documents ensures a robust and reliable future for the existing "installed base" of ~TiddlyWiki, even as the community migrates to using the new power and flexiblity of ~TiddlyWiki5.
-
-You can view versions of ~TiddlyWiki from the following locations:
-|current release of ~TiddlyWiki Classic|http://www.TiddlyWiki.com/|
-|latest pre-release of ~TiddlyWiki Classic|http://www.TiddlyWiki.com/beta/|
-|latest pre-release of ~TiddlyWiki5|http://five.TiddlyWiki.com/|
-
+You can view other versions of ~TiddlyWiki from the following locations:
+| current release of ~TiddlyWiki Classic|!http://www.TiddlyWiki.com/|
+| previous releases of ~TiddlyWiki Classic|!http://tiddlywiki.com/archive/|
+| latest pre-release of ~TiddlyWiki5|!http://five.TiddlyWiki.com/|
