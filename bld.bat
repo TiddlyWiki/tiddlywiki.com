@@ -12,11 +12,26 @@ echo - - - - - - - - - - - - - - -
 echo BUILD: assembling TESTS.HTML (v%TIDDLYWIKI_RELEASE%)
 node %TIDDLYWIKI5_DIR%/tiddlywiki.js %TIDDLYWIKI5_DIR%/editions/tw2 --verbose --load ../tiddlywiki/test/recipes/tests.html.recipe --savetiddler $:/core/templates/tiddlywiki2.template.html %TIDDLYWIKI_DEST%/tests.html text/plain
 echo - - - - - - - - - - - - - - -
-echo BUILD: creating EMPTY.HTML and INDEX.XML from INDEX.HTML
-%BROWSER% phantom_driver.js
+echo BUILD: creating TIDDLYWIKI_EXTERNALJS.HTML (v%TIDDLYWIKI_RELEASE%)
+node %TIDDLYWIKI5_DIR%/tiddlywiki.js %TIDDLYWIKI5_DIR%/editions/tw2 --verbose --load ../tiddlywiki/tiddlywiki_externaljs.html.recipe --savetiddler $:/core/templates/tiddlywiki2.template.html %TIDDLYWIKI_DEST%/tiddlywiki_externaljs.html text/plain
+echo - - - - - - - - - - - - - - -
+echo BUILD: creating TIDDLYWIKI_EXTERNALJS_TIDDLYSPACE.HTML (v%TIDDLYWIKI_RELEASE%)
+node %TIDDLYWIKI5_DIR%/tiddlywiki.js %TIDDLYWIKI5_DIR%/editions/tw2 --verbose --load ../tiddlywiki/tiddlywiki_externaljs_tiddlyspace.html.recipe --savetiddler $:/core/templates/tiddlywiki2.template.html %TIDDLYWIKI_DEST%/tiddlywiki_externaljs_tiddlyspace.html text/plain
+echo - - - - - - - - - - - - - - -
+echo BUILD: creating TWCORE.JS (v%TIDDLYWIKI_RELEASE%)
+node %TIDDLYWIKI5_DIR%/tiddlywiki.js %TIDDLYWIKI5_DIR%/editions/tw2 --verbose --load ../tiddlywiki/tiddlywikinosaver.html.recipe --savetiddler $:/core/templates/tiddlywiki2.externaljs.template.html %TIDDLYWIKI_DEST%/twcore.js text/plain
 echo - - - - - - - - - - - - - - -
 echo BUILD: copying TIDDLYSAVER.JAR
 copy ..\tiddlywiki\java\TiddlySaver.jar %TIDDLYWIKI_DEST% 1> NUL
+echo - - - - - - - - - - - - - - -
+echo BUILD: copying JQUERY.JS
+copy ..\tiddlywiki\jquery\jquery.js %TIDDLYWIKI_DEST% 1> NUL
+echo - - - - - - - - - - - - - - -
+echo BUILD: copying JQUERY.TWSTYLESHEET.JS
+copy ..\tiddlywiki\jquery\plugins\jQuery.twStylesheet.js %TIDDLYWIKI_DEST% 1> NUL
+echo - - - - - - - - - - - - - - -
+echo BUILD: creating EMPTY.HTML and INDEX.XML from INDEX.HTML
+%BROWSER% phantom_driver.js
 echo - - - - - - - - - - - - - - -
 echo BUILD: copying INDEX.HTML to TEST/INDEX.%TIDDLYWIKI_RELEASE%.HTML
 copy %TIDDLYWIKI_DEST%\index.html %CD%\test\index.%TIDDLYWIKI_RELEASE%.html 1> NUL
