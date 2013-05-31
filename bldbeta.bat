@@ -10,7 +10,7 @@ start /min %TIDDLYWIKI_DEST%
 echo - - - - - - - - - - - - - - -
 echo BUILD: creating INDEX.HTML (v%TIDDLYWIKI_RELEASE% beta)
 node %TIDDLYWIKI5_DIR%/tiddlywiki.js %TIDDLYWIKI5_DIR%/editions/tw2 --verbose --load ./beta.html.recipe --savetiddler $:/core/templates/tiddlywiki2.template.html %TIDDLYWIKI_DEST%/index.html text/plain
-copy %TIDDLYWIKI_DEST%/index.html %TIDDLYWIKI_DEST%/TiddlyWiki.html 
+copy %TIDDLYWIKI_DEST%\index.html %TIDDLYWIKI_DEST%\TiddlyWiki.html  1> NUL
 echo - - - - - - - - - - - - - - -
 echo BUILD: creating TESTS.HTML (v%TIDDLYWIKI_RELEASE% beta)
 node %TIDDLYWIKI5_DIR%/tiddlywiki.js %TIDDLYWIKI5_DIR%/editions/tw2 --verbose --load ../tiddlywiki/test/recipes/tests.html.recipe --savetiddler $:/core/templates/tiddlywiki2.template.html %TIDDLYWIKI_DEST%/tests.html text/plain
