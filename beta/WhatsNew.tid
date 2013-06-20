@@ -2,7 +2,7 @@ title: WhatsNew
 type: text/x-tiddlywiki
 modifier: EricShulman
 
-This revision includes three fixes to the new ''~HTML5 "download" saving'':
+This revision includes several fixes to the new ''~HTML5 "download" saving'', as well correcting the calculation of the 'useJavaSaver' and 'readOnly' flags when the document is viewed online:
 *{{block{
 https://github.com/TiddlyWiki/tiddlywiki/pull/135
 ''Critical fix to get TiddlyWiki 2.8.0 working on IE 6 and 7 (and 8)''
@@ -17,4 +17,9 @@ https://github.com/TiddlyWiki/tiddlywiki/issues/136
 https://github.com/TiddlyWiki/tiddlywiki/issues/137
 ''Fallback manual download saving in TW280 displays two messages''
 >Manual download saving displays a message ("RIGHT CLICK HERE to download...") as intended.  However, an extra message related to //automatic// ~HTML5-based download saving is then displayed immediately following the first message.  ''The extra message is no longer displayed.''
+}}}
+*{{block{
+https://github.com/TiddlyWiki/tiddlywiki/issues/139
+''tiddlywiki.com gives a Java warning''
+>A change to the window.allowSave() test function in ~TW280 resulted in incorrect calculation of the 'readOnly' and 'useJavaSaver' flags at startup, resulting in an errant Java warning message when the document is viewed online.  ''A new test function, window.isLocal(), is now used to correctly calulate the startup flags.''
 }}}
