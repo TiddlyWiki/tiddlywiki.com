@@ -3,7 +3,7 @@
 <head>
 <script id="versionArea" type="text/javascript">
 //<![CDATA[
-var version = {title: "TiddlyWiki", major: 2, minor: 7, revision: 2, date: new Date("May 15, 2013"), extensions: {}};
+var version = {title: "TiddlyWiki", major: 2, minor: 8, revision: 0, date: new Date("June 1, 2013"), extensions: {}};
 
 //]]>
 </script>
@@ -1397,7 +1397,7 @@ Display as:
 !!!!!Heading Level 5
 !!!!!!Heading Level 6</pre>
 </div>
-<div title="HelloThere" creator="psd" modifier="ericshulman" created="201102111106" modified="201305151821" tags="gettingstarted welcome">
+<div title="HelloThere" creator="psd" modifier="ericshulman" created="201102111106" modified="201306020330" tags="gettingstarted welcome">
 <pre>Welcome to TiddlyWiki, a reusable non-linear personal web notebook.  It's a unique [[wiki|WikiWikiWeb]] that people [[love using|Raves]] to keep ideas and information organised. It was originally created by JeremyRuston and is now a thriving [[open source|OpenSourceLicense]] project with a busy [[Community]] of independent developers.
 
 TiddlyWiki is written in HTML, CSS and JavaScript to run on any reasonably modern [[browser|Browsers]] without needing any ServerSide logic. It allows anyone to create personal SelfContained hypertext documents that can be published to a web server, sent by email, stored in a Dropbox or kept on a USB thumb drive to make a WikiOnAStick. Because it doesn't need to be installed and configured it makes a great GuerillaWiki.
@@ -3059,19 +3059,22 @@ Under Vista, TiddlyWiki will not save changes correctly if you are viewing the T
 <pre>|''URL:''|http://visualtw.ouvaton.org/VisualTW.html|
 |''Author:''|Pascal|</pre>
 </div>
-<div title="WhatsNew" creator="ericshulman" modifier="ericshulman" created="201209160311" modified="201305131027" tags="gettingstarted welcome">
-<pre>The following is a summary of changes between ~TiddlyWiki v2.7.1 and v2.7.2.
+<div title="WhatsNew" creator="ericshulman" modifier="ericshulman" created="201209160311" modified="201306020330" tags="gettingstarted welcome">
+<pre>The following is a summary of changes between ~TiddlyWiki v2.7.2 and v2.8.0.
 *{{block{
-''Backstage&gt;import:''
-See https://github.com/TiddlyWiki/tiddlywiki/issues/116
-Importing tiddlers now uses &quot;~FileReader&quot; API whenever available (currently supported by Chrome, Firefox 20+, etc.).  This new ~HTML5-standard browser-based file I/O handling ''//does not require any special privileges or security permissions//'' to read contents of files that you interactively select from your local filesystem, and you can now successfully ''//import tiddler from files that are outside of the current folder.//''
-&gt;Note: this change only applies when you use the &quot;browse&quot; (or &quot;select file&quot;) button to interactively choose a document from your local filesystem.   If you manually enter (or paste) a local {{{file://}}} URL into the import form (or if ~FileReader handling is not supported by your browser version), the existing browser-specific file I/O functions are used, which requires security permissions and/or other add-ons to permit reading of file contents; e.g. ~TiddlyFox (~FireFox), ~TiddlySaver java applet (Chrome, Safari, Opera, etc.), or ~ActiveX (Internet Explorer).
+''~HTML5 &quot;download&quot; saving''
+In ~TiddlyWiki version 2.7.x and earlier, when direct file I/O functions are not available, ~TiddlyWiki is unable to save the document and simply reports an error to that effect.  ''~TiddlyWiki version 2.8.0 introduces new fallback handling for saving your changes when direct file I/O is not available.''
+
+The new handling ''permits ~HTML5-compatible browsers to &quot;download&quot; the current document from active browser memory (including any unsaved changes)'' by triggering the familiar &quot;download a file&quot; dialog(s) provided by your browser.  This process typically allows you to accept/deny the &quot;download&quot; of your updated document file and, depending upon your browser's settings, select the location (path and filename) in which to save it, ''//without requiring any special security permissions or browser add-ons//.''
+
+The new fallback method ''also works with ~TiddlyWiki document that has been posted online.''  When you select &lt;&lt;saveChanges&gt;&gt;, instead of that infamously annoying message: &quot;You need to save this TiddlyWiki to a file before you can save changes&quot;, ''the online document -- including any changes you've made -- is actually downloaded to your local filesystem.''  Once downloaded, you can then open the local copy to continue editing and save changes using direct local file I/O (if enabled) or fallback &quot;download&quot; handling if direct file I/O is not enabled. 
+
+&gt;//Note: Currently, the &quot;download&quot; method can only be used to save the main ~TiddlyWiki document file and does not generate and save backup files, XML files (for RSS feeds) or new blank files (&quot;empty.html&quot;), even if these options are selected in [[AdvancedOptions]].  To save these additional files, a direct local file I/O method must be enabled (i.e., permissions granted and/or add-ons installed).//
+
 }}}
 *{{block{
-''Internet Explorer:''
-See https://github.com/TiddlyWiki/tiddlywiki/issues/118
-When using ~IE10 (the current version of IE), special-case handling of embedded newlines in ~PRE-formatted blocks is no longer applied.  This corrects a formatting/display error introduced by changes in ~IE10.
-&gt;Note: this change only applies to ~IE10 and above; special handling is still applied to embedded newlines in ~IE9 and earlier so there should be no change to existing content when viewed on ~IE9 or earlier.
+''manual download saving''
+If direct file I/O is unavailable ''//and the ~HTML5 &quot;download&quot; feature is not supported by your browser//'' (i.e, you are using an older browser), ~TiddlyWiki will display linked message text in the upper-right corner &quot;message area&quot;.  This link contains the entire document content (including your changes), encoded a special data:// URI.  When you right-click and select &quot;save link as...&quot; from the link's popup menu, it triggers the same browser-provided &quot;download a file&quot; interactive process outlined above, allowing you to save the encoded link content as a file on your local filesystem.
 }}}</pre>
 </div>
 <div title="Wii" creator="psd" modifier="blaine" created="201102111107" modified="201102111310">
@@ -3873,6 +3876,8 @@ merge(config.messages,{
 	emptySaved: "Empty template saved",
 	emptyFailed: "Failed to save empty template file",
 	mainSaved: "Main TiddlyWiki file saved",
+	mainDownload: "Downloading/saving main TiddlyWiki file",
+	mainDownloadManual: "RIGHT CLICK HERE to download/save main TiddlyWiki file",
 	mainFailed: "Failed to save main TiddlyWiki file. Your changes have not been saved",
 	macroError: "Error in macro <<%0>>",
 	macroErrorDetails: "Error while executing macro <<%0>>:\n%1",
@@ -4286,7 +4291,7 @@ var pluginInfo,tiddler; // Used to pass information to plugins in loadPlugins()
 // Whether this file can be saved back to the same location [Preemption]
 window.allowSave = window.allowSave || function(l)
 {
-	return (document.location.protocol == "file:");
+	return true;
 }
 
 // Whether to use the JavaSaver applet
@@ -4302,6 +4307,7 @@ if(!window || !window.console) {
 // Starting up
 function main()
 {
+	window.originalHTML=recreateOriginal();
 
 	var t10,t9,t8,t7,t6,t5,t4,t3,t2,t1,t0 = new Date();
 	startingUp = true;
@@ -9616,9 +9622,35 @@ function autoSaveChanges(onlyIfDirty,tiddlers)
 function loadOriginal(localPath)
 {
 	var content=loadFile(localPath);
+	if (!content) content=window.originalHTML||recreateOriginal();
 	return content;
 }
 
+function recreateOriginal()
+{
+	// construct doctype
+	var t=document.doctype;
+	var content = "<!DOCTYPE "+t.name;
+	if      (t.publicId)		content+=' PUBLIC "'+t.publicId+'"';
+	else if (t.systemId)		content+=' SYSTEM "'+t.systemId+'"';
+	content+=' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"';
+	content+='>\n';
+
+	// append current document content
+	content+=document.documentElement.outerHTML;
+
+	content=content.replace(/<div id="saveTest">savetest<\/div>/,'<div id="saveTest"></div>');
+	content=content.replace(/script><applet [^\>]*><\/applet>/g,'script>');
+	content=content.replace(/><head>/,'>\n<head>');
+	content=content.replace(/\n\n<\/body><\/html>$/,'</body>\n</html>\n');
+	content=content.replace(/(<(meta) [^\>]*[^\/])>/g,'$1 />');
+	content=content.replace(/<noscript>[^\<]*<\/noscript>/,
+		function(m){return m.replace(/&lt;/g,'<').replace(/&gt;/g,'>');});
+	content=content.replace(/<div id="copyright">[^\<]*<\/div>/,
+		function(m){return m.replace(/\xA9/g,'&copy;');});
+
+	return content;
+}
 
 // Save this tiddlywiki with the pending changes
 function saveChanges(onlyIfDirty,tiddlers)
@@ -9648,14 +9680,16 @@ function saveChanges(onlyIfDirty,tiddlers)
 		alert(msg.invalidFileError.format([localPath]));
 		return;
 	}
+	var co=config.options; //# abbreviation
+	config.saveByDownload=false;
 	saveMain(localPath,original,posDiv);
-	if(config.options.chkSaveBackups)
+	if(co.chkSaveBackups && !config.saveByDownload)
 		saveBackup(localPath,original);
-	if(config.options.chkSaveEmptyTemplate)
+	if(co.chkSaveEmptyTemplate && !config.saveByDownload)
 		saveEmpty(localPath,original,posDiv);
-	if(config.options.chkGenerateAnRssFeed && saveRss instanceof Function)
+	if(co.chkGenerateAnRssFeed && saveRss instanceof Function && !config.saveByDownload)
 		saveRss(localPath);
-	if(config.options.chkDisplayInstrumentation)
+	if(co.chkDisplayInstrumentation)
 		displayMessage("saveChanges " + (new Date()-t0) + " ms");
 }
 
@@ -9669,7 +9703,14 @@ function saveMain(localPath,original,posDiv)
 		showException(ex);
 	}
 	if(save) {
-		displayMessage(config.messages.mainSaved,"file://" + localPath);
+		if (config.saveByDownload) { //# set by HTML5DownloadSaveFile() or manualSaveFile()
+			var link = "data:text/html," + encodeURIComponent(revised);
+			var msg  = config.messages.mainDownload;
+		} else {
+			var link = "file://" + localPath;
+			var msg  = config.messages.mainSaved;
+		}
+		displayMessage(msg,link);
 		store.setDirty(false);
 	} else {
 		alert(config.messages.mainFailed);
@@ -9830,6 +9871,10 @@ window.saveFile = window.saveFile || function(fileUrl,content)
 		r = ieSaveFile(fileUrl,content);
 	if(!r)
 		r = javaSaveFile(fileUrl,content);
+	if(!r)
+		r = HTML5DownloadSaveFile(fileUrl,content);
+	if(!r)
+		r = manualSaveFile(fileUrl,content);
 	return r;
 }
 
@@ -10059,6 +10104,36 @@ function javaLoadFile(filePath)
 	return content.join("\n");
 }
 
+function HTML5DownloadSaveFile(filePath,content)
+{
+	if(document.createElement("a").download !== undefined) {
+		config.saveByDownload=true;
+		var slashpos=filePath.lastIndexOf("/");
+		if (slashpos==-1) slashpos=filePath.lastIndexOf("\\"); 
+		var filename=filePath.substr(slashpos+1);
+		var uri = "data:text/html," + encodeURIComponent(content);
+		var link = document.createElement("a");
+		link.setAttribute("target","_blank");
+		link.setAttribute("href",uri);
+		link.setAttribute("download",filename);
+		document.body.appendChild(link); link.click(); document.body.removeChild(link);
+		return true;
+	}
+	return null;
+}
+
+// Returns null if it can't do it, false if there's an error, true if it saved OK
+function manualSaveFile(filePath,content)
+{
+	// FALLBACK for showing a link to data: URI
+	config.saveByDownload=true;
+	var slashpos=filePath.lastIndexOf("/");
+	if (slashpos==-1) slashpos=filePath.lastIndexOf("\\"); 
+	var filename=filePath.substr(slashpos+1);
+	var uri = "data:text/html," + encodeURIComponent(content);
+	displayMessage(config.messages.mainDownloadManual,uri);
+	return true;
+}
 //--
 //-- Filesystem utilities
 //--
