@@ -3,7 +3,7 @@
 <head>
 <script id="versionArea" type="text/javascript">
 //<![CDATA[
-var version = {title: "TiddlyWiki", major: 2, minor: 8, revision: 0, date: new Date("June 1, 2013"), extensions: {}};
+var version = {title: "TiddlyWiki", major: 2, minor: 8, revision: 1, date: new Date("June 23, 2013"), extensions: {}};
 
 //]]>
 </script>
@@ -3059,22 +3059,27 @@ Under Vista, TiddlyWiki will not save changes correctly if you are viewing the T
 <pre>|''URL:''|http://visualtw.ouvaton.org/VisualTW.html|
 |''Author:''|Pascal|</pre>
 </div>
-<div title="WhatsNew" creator="ericshulman" modifier="ericshulman" created="201209160311" modified="201306020330" tags="gettingstarted welcome">
-<pre>The following is a summary of changes between ~TiddlyWiki v2.7.2 and v2.8.0.
+<div title="WhatsNew" creator="ericshulman" modifier="ericshulman" created="201209160311" modified="201306232210" tags="gettingstarted welcome">
+<pre>The changes between ~TiddlyWiki v2.8.0 and v2.8.1 correct several issues introduced with the new ~HTML5 &quot;download&quot; saving:
 *{{block{
-''~HTML5 &quot;download&quot; saving''
-In ~TiddlyWiki version 2.7.x and earlier, when direct file I/O functions are not available, ~TiddlyWiki is unable to save the document and simply reports an error to that effect.  ''~TiddlyWiki version 2.8.0 introduces new fallback handling for saving your changes when direct file I/O is not available.''
-
-The new handling ''permits ~HTML5-compatible browsers to &quot;download&quot; the current document from active browser memory (including any unsaved changes)'' by triggering the familiar &quot;download a file&quot; dialog(s) provided by your browser.  This process typically allows you to accept/deny the &quot;download&quot; of your updated document file and, depending upon your browser's settings, select the location (path and filename) in which to save it, ''//without requiring any special security permissions or browser add-ons//.''
-
-The new fallback method ''also works with ~TiddlyWiki document that has been posted online.''  When you select &lt;&lt;saveChanges&gt;&gt;, instead of that infamously annoying message: &quot;You need to save this TiddlyWiki to a file before you can save changes&quot;, ''the online document -- including any changes you've made -- is actually downloaded to your local filesystem.''  Once downloaded, you can then open the local copy to continue editing and save changes using direct local file I/O (if enabled) or fallback &quot;download&quot; handling if direct file I/O is not enabled. 
-
-&gt;//Note: Currently, the &quot;download&quot; method can only be used to save the main ~TiddlyWiki document file and does not generate and save backup files, XML files (for RSS feeds) or new blank files (&quot;empty.html&quot;), even if these options are selected in [[AdvancedOptions]].  To save these additional files, a direct local file I/O method must be enabled (i.e., permissions granted and/or add-ons installed).//
-
+https://github.com/TiddlyWiki/tiddlywiki/pull/135
+''Critical fix to get ~TiddlyWiki 2.8.0 working on IE 6 and 7 (and 8)''
+&gt;IE8 and earlier do not define 'doctype' value, causing a &quot;failure to load&quot; problem during startup.  ''recreateOriginal() now checks for a valid doctype value to avoid the error.''
 }}}
 *{{block{
-''manual download saving''
-If direct file I/O is unavailable ''//and the ~HTML5 &quot;download&quot; feature is not supported by your browser//'' (i.e, you are using an older browser), ~TiddlyWiki will display linked message text in the upper-right corner &quot;message area&quot;.  This link contains the entire document content (including your changes), encoded a special data:// URI.  When you right-click and select &quot;save link as...&quot; from the link's popup menu, it triggers the same browser-provided &quot;download a file&quot; interactive process outlined above, allowing you to save the encoded link content as a file on your local filesystem.
+https://github.com/TiddlyWiki/tiddlywiki/issues/136
+''International characters corrupted by ~TW280 'download saving' in Firefox''
+&gt;Firefox does some additional processing of &quot;~URL-encoded&quot; content that results in incorrect saving of international characters.  ''Content for download is now &quot;base64-encoded&quot; to prevent unwanted extra processing by Firefox.''
+}}}
+*{{block{
+https://github.com/TiddlyWiki/tiddlywiki/issues/137
+''Fallback manual download saving in ~TW280 displays two messages''
+&gt;Manual download saving displays a message (&quot;RIGHT CLICK HERE to download...&quot;) as intended.  However, an extra message related to //automatic// ~HTML5-based download saving is then displayed immediately following the first message.  ''The extra message is no longer displayed.''
+}}}
+*{{block{
+https://github.com/TiddlyWiki/tiddlywiki/issues/139
+''tiddlywiki.com gives a Java warning''
+&gt;A change to the window.allowSave() test function in ~TW280 resulted in incorrect calculation of the 'readOnly' and 'useJavaSaver' flags at startup, resulting in an errant Java warning message when the document is viewed online.  ''A new test function, window.isLocal(), is now used to correctly calulate the startup flags.''
 }}}</pre>
 </div>
 <div title="Wii" creator="psd" modifier="blaine" created="201102111107" modified="201102111310">
@@ -4294,8 +4299,14 @@ window.allowSave = window.allowSave || function(l)
 	return true;
 }
 
+// Whether this file is being viewed locally
+window.isLocal = function()
+{
+	return (document.location.protocol == "file:");
+}
+
 // Whether to use the JavaSaver applet
-var useJavaSaver = window.allowSave() && (config.browser.isSafari || config.browser.isOpera);
+var useJavaSaver = window.isLocal() && (config.browser.isSafari || config.browser.isOpera);
 
 // Allow preemption code a chance to tweak config and useJavaSaver [Preemption]
 if (window.tweakConfig) window.tweakConfig();
@@ -4335,7 +4346,7 @@ function main()
 	t3 = new Date();
 	invokeParamifier(params,"onload");
 	t4 = new Date();
-	readOnly = window.allowSave() ? false : config.options.chkHttpReadOnly;
+	readOnly = window.isLocal() ? false : config.options.chkHttpReadOnly;
 	var pluginProblem = loadPlugins("systemConfig");
 	doc.trigger("loadPlugins");
 	t5 = new Date();
@@ -9629,10 +9640,15 @@ function loadOriginal(localPath)
 function recreateOriginal()
 {
 	// construct doctype
+	var content = "<!DOCTYPE ";
 	var t=document.doctype;
-	var content = "<!DOCTYPE "+t.name;
-	if      (t.publicId)		content+=' PUBLIC "'+t.publicId+'"';
-	else if (t.systemId)		content+=' SYSTEM "'+t.systemId+'"';
+	if (!t) 
+		content+="html"
+	else {
+		content+=t.name;
+		if      (t.publicId)		content+=' PUBLIC "'+t.publicId+'"';
+		else if (t.systemId)		content+=' SYSTEM "'+t.systemId+'"';
+	}
 	content+=' "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"';
 	content+='>\n';
 
@@ -9682,16 +9698,20 @@ function saveChanges(onlyIfDirty,tiddlers)
 	}
 	var co=config.options; //# abbreviation
 	config.saveByDownload=false;
+	config.saveByManualDownload=false;
 	saveMain(localPath,original,posDiv);
-	if(co.chkSaveBackups && !config.saveByDownload)
-		saveBackup(localPath,original);
-	if(co.chkSaveEmptyTemplate && !config.saveByDownload)
-		saveEmpty(localPath,original,posDiv);
-	if(co.chkGenerateAnRssFeed && saveRss instanceof Function && !config.saveByDownload)
-		saveRss(localPath);
+	if (!config.saveByDownload && !config.saveByManualDownload) {
+		if(co.chkSaveBackups)
+			saveBackup(localPath,original);
+		if(co.chkSaveEmptyTemplate)
+			saveEmpty(localPath,original,posDiv);
+		if(co.chkGenerateAnRssFeed && saveRss instanceof Function)
+			saveRss(localPath);
+	}
 	if(co.chkDisplayInstrumentation)
 		displayMessage("saveChanges " + (new Date()-t0) + " ms");
 }
+
 
 function saveMain(localPath,original,posDiv)
 {
@@ -9703,14 +9723,16 @@ function saveMain(localPath,original,posDiv)
 		showException(ex);
 	}
 	if(save) {
-		if (config.saveByDownload) { //# set by HTML5DownloadSaveFile() or manualSaveFile()
-			var link = "data:text/html," + encodeURIComponent(revised);
-			var msg  = config.messages.mainDownload;
-		} else {
-			var link = "file://" + localPath;
-			var msg  = config.messages.mainSaved;
+		if (!config.saveByManualDownload) {
+			if (config.saveByDownload) { //# set by HTML5DownloadSaveFile()
+				var link = getDataURI(revised);
+				var msg  = config.messages.mainDownload;
+			} else {
+				var link = "file://" + localPath;
+				var msg  = config.messages.mainSaved;
+			}
+			displayMessage(msg,link);
 		}
-		displayMessage(msg,link);
 		store.setDirty(false);
 	} else {
 		alert(config.messages.mainFailed);
@@ -10111,7 +10133,7 @@ function HTML5DownloadSaveFile(filePath,content)
 		var slashpos=filePath.lastIndexOf("/");
 		if (slashpos==-1) slashpos=filePath.lastIndexOf("\\"); 
 		var filename=filePath.substr(slashpos+1);
-		var uri = "data:text/html," + encodeURIComponent(content);
+		var uri = getDataURI(content);
 		var link = document.createElement("a");
 		link.setAttribute("target","_blank");
 		link.setAttribute("href",uri);
@@ -10126,15 +10148,44 @@ function HTML5DownloadSaveFile(filePath,content)
 function manualSaveFile(filePath,content)
 {
 	// FALLBACK for showing a link to data: URI
-	config.saveByDownload=true;
+	config.saveByManualDownload=true;
 	var slashpos=filePath.lastIndexOf("/");
 	if (slashpos==-1) slashpos=filePath.lastIndexOf("\\"); 
 	var filename=filePath.substr(slashpos+1);
-	var uri = "data:text/html," + encodeURIComponent(content);
+	var uri = getDataURI(content);
 	displayMessage(config.messages.mainDownloadManual,uri);
 	return true;
 }
-//--
+
+// construct data URI (using base64 encoding to preserve multi-byte encodings)
+function getDataURI(data) {
+	if (config.browser.isIE)
+		return "data:text/html,"+encodeURIComponent(data);
+	else
+		return "data:text/html;base64,"+encodeBase64(data);
+}
+
+function encodeBase64(data) {
+	if (!data) return "";
+	var keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+	var out = "";
+	var chr1,chr2,chr3="";
+	var enc1,enc2,enc3,enc4="";
+	for (var count=0,i=0; i<data.length; ) {
+		chr1=data.charCodeAt(i++);
+		chr2=data.charCodeAt(i++);
+		chr3=data.charCodeAt(i++);
+		enc1=chr1 >> 2;
+		enc2=((chr1 & 3) << 4) | (chr2 >> 4);
+		enc3=((chr2 & 15) << 2) | (chr3 >> 6);
+		enc4=chr3 & 63;
+		if (isNaN(chr2)) enc3=enc4=64;
+		else if (isNaN(chr3)) enc4=64;
+		out+=keyStr.charAt(enc1)+keyStr.charAt(enc2)+keyStr.charAt(enc3)+keyStr.charAt(enc4);
+		chr1=chr2=chr3=enc1=enc2=enc3=enc4="";
+	}
+	return out;
+}//--
 //-- Filesystem utilities
 //--
 
