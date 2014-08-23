@@ -9,6 +9,8 @@ call bldbeta  %TIDDLYWIKI_RELEASE%
 echo - - - - - - - - - - - - - - -
 call zip  %TIDDLYWIKI_RELEASE%
 echo - - - - - - - - - - - - - - -
+echo TEST: running BETA version comparison...
+set TIDDLYWIKI_TEST=%CD%\test\beta.html
 call test %TIDDLYWIKI_RELEASE% %2
 echo - - - - - - - - - - - - - - -
 echo MAKEBETA: done
