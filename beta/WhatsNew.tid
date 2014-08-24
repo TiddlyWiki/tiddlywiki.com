@@ -27,7 +27,7 @@ onclick="
 *<<slider "" "WhatsNew##160" "160: Remove the syncing item from the default ToolbarCommands">>
 *<<slider "" "WhatsNew##161" "161: Make new tiddlers open below below the one containing newTiddler macro">>
 *<<slider "" "WhatsNew##162" "162: Substitute missing arguments of parametric transclusions with an empty line">>
-*<<slider "" "WhatsNew##TBD" "TBD: Use default editmode text for themes with non-standard template names">>
+*<<slider "" "WhatsNew##TBD" "166: Use default editmode text for themes with non-standard template names">>
 /%
 !!!112
 <<<
@@ -130,10 +130,10 @@ A new option, ''chkRemoveExtraMarkers'', has been added to AdvancedOptions to pe
 ''Expected Impact:''
 None, unless chkRemoveExtraMarkers option flag is enabled.
 <<<
-!!!TBD
+!!!166
 <<<
 ''Description:''
-https://github.com/TiddlyWiki/tiddlywiki/issues/TBD
+https://github.com/TiddlyWiki/tiddlywiki/issues/166
 When a theme defines an edit template with a name other than "~EditTemplate", the default text shown when editing a new tiddler was incorrectly using the viewmode text ("The tiddler '...' doesn't yet exist. Double-click to create it"), instead of the correct editmode text ("Type the text for '...'").
 ''Changes:''
 The tiddler display handler now checks for the edit template name as defined by the current theme, rather than always looking for the standard template name.
