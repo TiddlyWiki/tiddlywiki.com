@@ -1,4 +1,4 @@
 title: SiteSubtitle
 type: text/x-tiddlywiki
 
-''Pre-release build v<<version>>''
+version <<version>>

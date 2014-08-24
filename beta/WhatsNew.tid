@@ -2,24 +2,143 @@ title: WhatsNew
 type: text/x-tiddlywiki
 modifier: EricShulman
 
-This revision includes several fixes to the new ''~HTML5 "download" saving'', as well correcting the calculation of the 'useJavaSaver' and 'readOnly' flags when the document is viewed online:
-*{{block{
-https://github.com/TiddlyWiki/tiddlywiki/pull/135
-''Critical fix to get TiddlyWiki 2.8.0 working on IE 6 and 7 (and 8)''
->IE8 and earlier do not define 'doctype' value, causing a "failure to load" problem during startup.  ''recreateOriginal() now checks for a valid doctype value to avoid the error.''
-}}}
-*{{block{
-https://github.com/TiddlyWiki/tiddlywiki/issues/136
-''International characters corrupted by TW280 'download saving' in FireFox''
->Firefox does some additional processing of "URL-encoded" content that results in incorrect saving of international characters.  ''Content for download is now "base64-encoded" to prevent unwanted extra processing by FireFox.''
-}}}
-*{{block{
-https://github.com/TiddlyWiki/tiddlywiki/issues/137
-''Fallback manual download saving in TW280 displays two messages''
->Manual download saving displays a message ("RIGHT CLICK HERE to download...") as intended.  However, an extra message related to //automatic// ~HTML5-based download saving is then displayed immediately following the first message.  ''The extra message is no longer displayed.''
-}}}
-*{{block{
-https://github.com/TiddlyWiki/tiddlywiki/issues/139
-''tiddlywiki.com gives a Java warning''
->A change to the window.allowSave() test function in ~TW280 resulted in incorrect calculation of the 'readOnly' and 'useJavaSaver' flags at startup, resulting in an errant Java warning message when the document is viewed online.  ''A new test function, window.isLocal(), is now used to correctly calulate the startup flags.''
-}}}
+This revision includes updates to resolve the following open issues and/or pull requests:
+^^''//(click an individual heading below to toggle details, or click here to <html><a href="javascript:;" class="TiddlyLink"
+onclick="
+	var show='show all details';
+        var hide='hide all details';
+	var here=story.findContainingTiddler(this); if (!here) return false;
+	var elems=here.getElementsByTagName('*');
+	var state=(this.innerHTML==show)?'none':'block';
+	for (var e=0; e<elems.length; e++) { var p=elems[e];
+		if (p.className!='sliderPanel' || p.style.display!=state) continue;
+		p.previousSibling.onclick();
+	}
+	this.innerHTML=state=='none'?hide:show;
+	return false;
+">show all details</a><nowiki></html>)//''^^
+*<<slider "" "WhatsNew##112" "112: Allow international characters and leading/trailing whitespace in slice names">>
+*<<slider "" "WhatsNew##132" "132: URLs containing square brackets not recognized">>
+*<<slider "" "WhatsNew##147" "147: Transclusion problem on startup">>
+*<<slider "" "WhatsNew##154" "154: Parametric transclusion doesn't work properly with refreshing">>
+*<<slider "" "WhatsNew##156" "156: Fix javaDebugInformation function">>
+*<<slider "" "WhatsNew##157" "157: Improve the String.prototype.escapeRegExp utility">>
+*<<slider "" "WhatsNew##159" "159: Cookies are not working in Opera">>
+*<<slider "" "WhatsNew##160" "160: Remove the syncing item from the default ToolbarCommands">>
+*<<slider "" "WhatsNew##161" "161: Make new tiddlers open below below the one containing newTiddler macro">>
+*<<slider "" "WhatsNew##162" "162: Substitute missing arguments of parametric transclusions with an empty line">>
+*<<slider "" "WhatsNew##TBD" "TBD: Use default editmode text for themes with non-standard template names">>
+/%
+!!!112
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/pull/112
+Slice names currently only recognize standard Latin characters, and do not permit flexible use of whitespace both within and/or surrounding a slice name.
+''Changes:''
+The {{{TiddlyWiki.prototype.slicesRE}}} regular expression has been updated to allow international characters and variable whitespace.
+''Expected Impact:''
+Slice names currently recognized in existing documents will continue to be handled as before.  Slice names may now contain international characters and/or spaces within the slice name, and can use variable surrounding whitespace to help format the slice table defintion (e.g., for readability of slice tables in edit mode).
+<<<
+!!!132
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/issues/132
+If a URL embedded in tiddler content contains square brackets (e.g., using literal {{{"[["}}} and {{{"]]"}}} for a perma-link to another ~TiddlyWiki document), the brackets are not properly recognized by ~TiddlyWiki as being part of the URL, and the resulting link is incorrect.
+''Changes:''
+The {{{config.textPrimitives.urlPattern}}} regular expression has been updated to permit square brackets to occur within the URL text.
+''Expected Impact:''
+Embedded URLs that contain perma-links using square brackets will now be properly recognized.  No impact on URLs not containing square brackets.  No impact on other wiki formats.
+<<<
+!!!147
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/issues/147
+During startup processing, tiddlers are being rendered and then automatically refreshed.  When a tiddler contains transcluded content that uses macro parameter substitutions, the additional refresh handling will re-process any substitution macro parameters, which can cause unintended side effects due to processing of evaluated parameters.
+''Changes:''
+The refresh handler for tiddlers now checks for the 'startingUp' global flag, and bypasses the extra (and unnecessary) re-rendering of the tiddler.
+''Expected Impact:''
+This only affects startup processing, and will have no impact on subsequent display updates during the session.
+For additional technical details, see http://startuptransclusions.tiddlyspot.com/ and http://tobibeer.tiddlyspace.com/#startingUp
+<<<
+!!!154
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/issues/154
+If a parameter used with the {{{<<tiddler>>}}} macro contains square brackets, the transclusion will render properly when first displayed, but will incorrectly re-parse the parameters when automatically refreshing the transcluded content in response to changes in the source tiddler.
+''Changes:''
+The parameters used with {{{<<tiddler>>}}} are now stored as a pre-parsed data object, rather than a text attribute, so they don't need to be re-parsed during a refresh.
+''Expected Impact:''
+{{{<<tiddler>>}}} parameters with square brackets will be processed correctly when content is refreshed.  No impact on parameters not containing square brackets.
+<<<
+!!!156
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/pull/156
+javaDebugInformation() function was calling a misnamed applet function
+''Changes:''
+The function name has been corrected.
+''Expected Impact:''
+This is a development utility function that is only invoked manually when debugging a failure in TiddlySaver.jar, and will have NO effect during normal TiddlyWiki operation.
+<<<
+!!!157
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/issues/157
+The ~TWCore utility function, escapeRegExp(), does not properly handle special symbols, "dash" (-) and "slash" (/).  In addition, this same function has been re-implemented in ~TiddlyWiki5, using a much more efficient method that is 100% backward-compatible with ~TiddlyWiki Classic.
+''Changes:''
+The code for {{{String.escapeRegExp()}}} has been replaced with the newer implementation from ~TiddlyWiki5.
+''Expected Impact:''
+Unknown, but none expected.
+<<<
+!!!159
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/issues/159
+The ~TWCore utility function, encodeHashMap() generates a text string containing name/value pairs using double-quotes around the values.  This "hash map" text is used internally in various ways to handle custom fields on tiddlers.  The hash map text format is also used when storing persistent ~TiddlyWiki option settings in a browser-based cookie.  However, double quotes are officially illegal in a cookie value.  Although many browsers allow the use of double-quotes anyway, some browsers, such as Opera, will reject cookie values containing double-quotes.
+''Changes:''
+The ~TWCore {{{saveCookie()}}} and {{{loadCookies()}}} functions have been updated to encode/decode all double-quotes into "%22" character codes, allowing them to be stored and retrieved from all browsers, without violating formal specifications for allowed cookie values.
+''Expected Impact:''
+Existing cookies that use literal double-quotes will still be recognized, but will be updated to use %22 encoding whenever the cookie value is changed.  If an existing cookie value contains literal "%22", it will be converted to a double-quote character when read.
+<<<
+!!!160
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/issues/160
+The default ~ViewToolbar definition in ~ToolbarCommands, includes a command for "syncing".  However, the supporting 'sync' handlers were removed from ~TiddlyWiki some time ago, so this command item produces a non-functional blank space when the toolbar is displayed.
+''Changes:''
+The default Shadow definition for ~ToolbarCommands has been updated.
+''Expected Impact:''
+Elimination of errant whitespace between toolbar command items.  Custom server-side environments such as TiddlySpace that provide their own 'sync' handlers may need to update the default ~ToolbarCommands to restore the 'sync' menu item.
+<<<
+!!!161
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/issues/161
+By default, the {{{<<newTiddler>>}}} and {{{<<newJournal>>}}} macros open a newly created tiddler at the top of the story column.  For the default use from the sidebar controls, this is a reasonable behavior.  However, if the newTiddler/newJournal macro is placed within tiddler content, then the placement of the newly created tiddler can cause the page display to scroll the current tiddler out of view, which can disrupt the workflow.
+''Changes:''
+The newTiddler/newJournal macro handler has been updated so that new tiddlers will automatically appear below the one that contains the macro, rather than always at the top of the story column.
+''Expected Impact:''
+Reduced scrolling and improved workflow when creating new tiddlers.
+<<<
+!!!162
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/issues/162
+When using {{{<<tiddler TiddlerName with: param param ...>>}}}, occurences of $1 through $9 contained in the source tiddler are replaced with the corresponding parameter values from the {{{<<tiddler>>}}} macro.  However, any unused markers are left as-is; e.g., if only two parameters are provided, only $1 and $2 will be replaced, and instances of $3 through $9 will remain in the rendered content.  For some use-cases, removing any remaining markers is preferable; however, changing the current default behavior may result in unexpected results for existing users.
+''Changes:''
+A new option, ''chkRemoveExtraMarkers'', has been added to AdvancedOptions to permit the alternative handling for markers.  The option defaults to undefined/false, which results in the existing behavior.  Setting this option enables the alternative handling that removes any transcluded markers not otherwise replaced by macro parameter values.
+''Expected Impact:''
+None, unless chkRemoveExtraMarkers option flag is enabled.
+<<<
+!!!TBD
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/issues/TBD
+When a theme defines an edit template with a name other than "~EditTemplate", the default text shown when editing a new tiddler was incorrectly using the viewmode text ("The tiddler '...' doesn't yet exist. Double-click to create it"), instead of the correct editmode text ("Type the text for '...'").
+''Changes:''
+The tiddler display handler now checks for the edit template name as defined by the current theme, rather than always looking for the standard template name.
+''Expected impact:''
+Themes that use an alternative name for the ~EditTemplate will now use the correct default text when editing a new tiddler.
+<<<
+!
+%/
