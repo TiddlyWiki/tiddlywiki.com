@@ -27,7 +27,7 @@ onclick="
 *<<slider "" "WhatsNew##160" "160: Remove the syncing item from the default ToolbarCommands">>
 *<<slider "" "WhatsNew##161" "161: Make new tiddlers open below below the one containing newTiddler macro">>
 *<<slider "" "WhatsNew##162" "162: Substitute missing arguments of parametric transclusions with an empty line">>
-*<<slider "" "WhatsNew##TBD" "166: Use default editmode text for themes with non-standard template names">>
+*<<slider "" "WhatsNew##166" "166: Use default editmode text for themes with non-standard template names">>
 /%
 !!!112
 <<<
