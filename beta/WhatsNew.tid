@@ -94,11 +94,11 @@ Unknown, but none expected.
 <<<
 ''Description:''
 https://github.com/TiddlyWiki/tiddlywiki/issues/159
-The ~TWCore utility function, encodeHashMap() generates a text string containing name/value pairs using double-quotes around the values.  This "hash map" text is used internally in various ways to handle custom fields on tiddlers.  The hash map text format is also used when storing persistent ~TiddlyWiki option settings in a browser-based cookie.  However, double quotes are officially illegal in a cookie value.  Although many browsers allow the use of double-quotes anyway, some browsers, such as Opera, will reject cookie values containing double-quotes.
+The ~TWCore utility function, encodeHashMap() is used to "pack" the ~TiddlyWiki option values when storing persistent settings in a browser-based cookie.  This function uses double-quotes around the options value.  However, double-quotes are officially illegal in a cookie value.  Although many browsers allow the use of double-quotes anyway, some browsers, such as Opera, will reject cookie values containing double-quotes.
 ''Changes:''
-The ~TWCore {{{saveCookie()}}} and {{{loadCookies()}}} functions have been updated to encode/decode all double-quotes into "%22" character codes, allowing them to be stored and retrieved from all browsers, without violating formal specifications for allowed cookie values.
+The ~TWCore {{{saveCookie()}}} and {{{loadCookies()}}} functions have been updated to encode/decode all double-quotes into "%22" character codes, allowing them to be stored and retrieved from all browsers, without violating formal specifications for allowed cookie values.  To preserve backward compatibility, the new, quote-encoded cookie is named "~TiddlyWikiOptions" rather than just "~TiddlyWiki", so that previous versions of TiddlyWiki will continue to use the old cookie name, while new version will use the updated cookie name.
 ''Expected Impact:''
-Existing cookies that use literal double-quotes will still be recognized, but will be updated to use %22 encoding whenever the cookie value is changed.  If an existing cookie value contains literal "%22", it will be converted to a double-quote character when read.
+The first time a copy of TW290 or above is opened, the option values from any existing "~TiddlyWiki" cookie will be copied to the new "~TiddlyWikiOptions" cookie and use %22 encoding whenever a cookie value is changed.  Once the new option cookie is stored, changes to option values made using older versions of TiddlyWiki will not be reflected in version TW290 and above.
 <<<
 !!!160
 <<<
