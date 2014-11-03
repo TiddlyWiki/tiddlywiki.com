@@ -28,6 +28,7 @@ onclick="
 *<<slider "" "WhatsNew##161" "161: Make new tiddlers open below below the one containing newTiddler macro">>
 *<<slider "" "WhatsNew##162" "162: Substitute missing arguments of parametric transclusions with an empty line">>
 *<<slider "" "WhatsNew##166" "166: Use default editmode text for themes with non-standard template names">>
+*<<slider "" "WhatsNew##170" "170: literal embedded HTML syntax breaks PhoneGap">>
 /%
 !!!112
 <<<
@@ -139,6 +140,16 @@ When a theme defines an edit template with a name other than "~EditTemplate", th
 The tiddler display handler now checks for the edit template name as defined by the current theme, rather than always looking for the standard template name.
 ''Expected impact:''
 Themes that use an alternative name for the ~EditTemplate will now use the correct default text when editing a new tiddler.
+<<<
+!!!170
+<<<
+''Description:''
+https://github.com/TiddlyWiki/tiddlywiki/issues/170
+When submitting ~TiddlyWiki documents to http://build.phonegap.com, they produced mangled output because the recreateOriginal() function includes embedded /body and /html syntax.
+''Changes:''
+The code within recreateOriginal() has been changed to split literal HTML syntax into pieces and use '+' to rejoin them, so that the strings are unaffected, but PhoneGap will not stumble on them.
+''Expected impact:''
+No effect on TiddlyWiki usage.  Allows TiddlyWiki Classic documents to be correctly used in PhoneGap projects.
 <<<
 !
 %/
