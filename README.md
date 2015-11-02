@@ -7,15 +7,15 @@ https://github.com/TiddlyWiki/tiddlywiki.com
 Description
 -----------
 
-This repository contains the tools required to create the site http://tiddlywiki.com/.
+This repository contains the tools required to create the site http://classic.tiddlywiki.com/.
 
-The content for tiddlywiki.com is obtained from a [TiddlySpace](http://tiddlyspace.com/).
+The content for classic.tiddlywiki.com is obtained from a [TiddlySpace](http://tiddlyspace.com/).
 
 
 Prerequisites
 -------------
 
-The following steps prepare your machine for building tiddlywiki.com:
+The following steps prepare your machine for building classic.tiddlywiki.com:
 
 1. Install the latest version of `nodejs` from http://www.nodejs.org
 2. If necessary, install the command line tool `curl` to retrieve content from TiddlySpace. For Windows systems, it can be downloaded from http://curl.haxx.se/download.html
@@ -45,12 +45,12 @@ Overview
 
 The batch files provided for Windows and OS X/Linux currently work slightly differently.
 
-Building tiddlywiki.com on Windows
+Building classic.tiddlywiki.com on Windows
 ----------------------------------
 
-The tiddlywiki.com build process is divided into several parts: `setenv`, `pull`, `bld`, and `test`.  You can run each part separately, or invoke a complete build sequence by running `maketw`, which then automatically calls upon each separate part of the process.
+The classic.tiddlywiki.com build process is divided into several parts: `setenv`, `pull`, `bld`, and `test`.  You can run each part separately, or invoke a complete build sequence by running `maketw`, which then automatically calls upon each separate part of the process.
 
-These steps should be performed with the current directory set to the tiddlywiki.com repository.
+These steps should be performed with the current directory set to the classic.tiddlywiki.com repository.
 
 ## Setting up batch files
 
@@ -65,7 +65,7 @@ Edit the `setenv.bat/sh` script to set:
 
 ## Pulling content from TiddlySpace
 
-The `pull.bat/sh` script retrieves the tiddlywiki.com tiddler content from TiddlySpace and creates a sub-folder named 'pulled' containing `.json` files with the tiddler content.
+The `pull.bat/sh` script retrieves the classic.tiddlywiki.com tiddler content from TiddlySpace and creates a sub-folder named 'pulled' containing `.json` files with the tiddler content.
 
 ## Cooking TiddlyWiki
 
@@ -85,7 +85,7 @@ Note: whenever a new version of TiddlyWiki is officially published, the new `ind
 
 ## Publishing to tiddlywiki.com
 
-Once the `bld` and `test` sequence has completed, you have successfully built a new local copy of TiddlyWiki.  You can then publish the results to http://tiddlywiki.com by copying the newly generated files (index.html, index.xml, TiddlySaver.jar, empty.html, and empty.zip) from the target folder (i.e., cooked/x.y.z/) into the local github.tiddlywiki.com repository and then commit those changes to the remote repository.  The committed files will automatically become available at http://tiddlywiki.github.com (which is also served by redirection from http://tiddlywiki.com)
+Once the `bld` and `test` sequence has completed, you have successfully built a new local copy of TiddlyWiki.  You can then publish the results to http://classic.tiddlywiki.com by copying the newly generated files (index.html, index.xml, TiddlySaver.jar, empty.html, and empty.zip) from the target folder (i.e., cooked/x.y.z/) into the local github.tiddlywiki.com repository and then commit those changes to the remote repository.  The committed files will automatically become available at http://tiddlywiki.github.com (which is also served by redirection from http://tiddlywiki.com)
 
 ## Publishing to TiddlySpace
 
@@ -96,7 +96,7 @@ Finally, to publish the new release for use with TiddlySpace, you need to manual
 
 You need to be a member of the tiddlywiki-releases.tiddlyspace.com space to do this.
 
-Building tiddlywiki.com on Windows
+Building classic.tiddlywiki.com on Windows
 ----------------------------------
 
 Execute `./bld.sh` to:
