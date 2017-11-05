@@ -48,7 +48,7 @@ The batch files provided for Windows and OS X/Linux currently work slightly diff
 Building classic.tiddlywiki.com on Windows
 ----------------------------------
 
-The classic.tiddlywiki.com build process is divided into several parts: `setenv`, `pull`, `bld`, and `test`.  You can run each part separately, or invoke a complete build sequence by running `maketw`, which then automatically calls upon each separate part of the process.
+The classic.tiddlywiki.com build process is divided into several parts: `setenv`, `bld`, and `test`.  You can run each part separately, or invoke a complete build sequence by running `maketw`, which then automatically calls upon each separate part of the process.
 
 These steps should be performed with the current directory set to the classic.tiddlywiki.com repository.
 
@@ -63,13 +63,9 @@ Edit the `setenv.bat/sh` script to set:
 
 `setenv` is invoked automatically by each part of the build process, so that all build scripts share the same environment variables.
 
-## Pulling content from TiddlySpace
-
-The `pull.bat/sh` script retrieves the classic.tiddlywiki.com tiddler content from TiddlySpace and creates a sub-folder named 'pulled' containing `.json` files with the tiddler content.
-
 ## Cooking TiddlyWiki
 
-The `bld.bat/sh` script clears the target folder, `cooked/x.y.z` (where x.y.z is the new build release number) and then invokes TiddlyWiki5 to generate a new target `index.html` file using `index.html.recipe` to incorporate the tiddler content from the `.json` files previously pulled from TiddlySpace.
+The `bld.bat/sh` script clears the target folder, `cooked/x.y.z` (where x.y.z is the new build release number) and then invokes TiddlyWiki5 to generate a new target `index.html` file using `index.html.recipe` to incorporate the tiddler content.
 
 Once this file is generated, the `bld` script automatically opens the file in your browser, so that you can manually invoke the "save changes" command from within the newly created document.  Before saving, be sure you have set the TiddlyWiki options for "chkGenerateAnRssFeed" and "chkSaveEmptyTemplate" (see AdvancedOptions), so that saving the document also creates new versions of `empty.html` and `index.xml` (the TiddlyWiki RSS file) in the target folder.  Saving changes also causes TiddlyWiki to generate some static HTML within the `index.html` file for display when Javascript is not enabled.
 
@@ -101,6 +97,5 @@ Building classic.tiddlywiki.com on Windows
 
 Execute `./bld.sh` to:
 
-* pull down the content from TiddlySpace
 * build TiddlyWiki using TW5
 * run the index.html  through Phantomjs to generate the RSS feed and `<title>` tag content
