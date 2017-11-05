@@ -22,9 +22,10 @@ The following steps prepare your machine for building classic.tiddlywiki.com:
 3. If necessary, install a `diff` program to compare versions of TiddlyWiki for testing after building. Mac OS X users can use `opendiff` that ships with XCode. Two options for Windows users are [WinDiff](http://www.grigsoft.com/download-windiff.htm) and [ExamDiff](http://www.prestosoft.com/edp_examdiff.asp)
 4. If necessary, install phantomjs with `npm install -g phantomjs` (Phantomjs is currently only used by the OS X/Linux batch files)
 5. Checkout or download the following repositories from GitHub:
-	6. https://github.com/TiddlyWiki/TiddlyWiki for the TiddlyWiki core source code. You can either download the latest version or visit https://github.com/TiddlyWiki/tiddlywiki/tags to download a specific tagged version
-	7. https://github.com/Jermolene/TiddlyWiki5 for TiddlyWiki5
-	8. https://github.com/TiddlyWiki/tiddlywiki.github.com for the TiddlyWiki GitHub Pages (only required if you are actually publishing the build to tiddlywiki.com)
+
+	* https://github.com/TiddlyWiki/TiddlyWiki for the TiddlyWiki core source code. You can either download the latest version or visit https://github.com/TiddlyWiki/tiddlywiki/tags to download a specific tagged version
+	* https://github.com/Jermolene/TiddlyWiki5 for TiddlyWiki5
+	* https://github.com/TiddlyWiki/tiddlywiki.github.com for the TiddlyWiki GitHub Pages (only required if you are actually publishing the build to tiddlywiki.com)
 
 The recommended directory structure for downloading the repositories is as follows:
 
