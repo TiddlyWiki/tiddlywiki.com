@@ -12,15 +12,6 @@ echo - - - - - - - - - - - - - - -
 echo BUILD: assembling TESTS.HTML (v%TIDDLYWIKI_RELEASE%)
 node %TIDDLYWIKI5_DIR%/tiddlywiki.js ./wiki --verbose --load ../tiddlywiki/test/recipes/tests.html.recipe --rendertiddler $:/core/templates/tiddlywiki2.template.html %TIDDLYWIKI_DEST%/tests.html text/plain
 echo - - - - - - - - - - - - - - -
-echo BUILD: creating TIDDLYWIKI_EXTERNALJS.HTML (v%TIDDLYWIKI_RELEASE%)
-node %TIDDLYWIKI5_DIR%/tiddlywiki.js ./wiki --verbose --load ../tiddlywiki/tiddlywiki_externaljs.html.recipe --rendertiddler $:/core/templates/tiddlywiki2.template.html %TIDDLYWIKI_DEST%/tiddlywiki_externaljs.html text/plain
-echo - - - - - - - - - - - - - - -
-echo BUILD: creating TIDDLYWIKI_EXTERNALJS_TIDDLYSPACE.HTML (v%TIDDLYWIKI_RELEASE%)
-node %TIDDLYWIKI5_DIR%/tiddlywiki.js ./wiki --verbose --load ../tiddlywiki/tiddlywiki_externaljs_tiddlyspace.html.recipe --rendertiddler $:/core/templates/tiddlywiki2.template.html %TIDDLYWIKI_DEST%/tiddlywiki_externaljs_tiddlyspace.html text/plain
-echo - - - - - - - - - - - - - - -
-echo BUILD: creating TWCORE.JS (v%TIDDLYWIKI_RELEASE%)
-node %TIDDLYWIKI5_DIR%/tiddlywiki.js ./wiki --verbose --load ../tiddlywiki/tiddlywikinosaver.html.recipe --rendertiddler $:/core/templates/tiddlywiki2.externaljs.template.html %TIDDLYWIKI_DEST%/twcore.js text/plain
-echo - - - - - - - - - - - - - - -
 echo BUILD: copying TIDDLYSAVER.JAR
 copy ..\tiddlywiki\java\TiddlySaver.jar %TIDDLYWIKI_DEST% 1> NUL
 echo - - - - - - - - - - - - - - -
