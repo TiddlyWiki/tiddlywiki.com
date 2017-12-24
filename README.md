@@ -20,7 +20,7 @@ The following steps prepare your machine for building classic.tiddlywiki.com:
 1. Install the latest version of `nodejs` from http://www.nodejs.org
 2. If necessary, install the command line tool `curl` to retrieve content from TiddlySpace. For Windows systems, it can be downloaded from http://curl.haxx.se/download.html
 3. If necessary, install a `diff` program to compare versions of TiddlyWiki for testing after building. Mac OS X users can use `opendiff` that ships with XCode. Two options for Windows users are [WinDiff](http://www.grigsoft.com/download-windiff.htm) and [ExamDiff](http://www.prestosoft.com/edp_examdiff.asp)
-4. If necessary, install phantomjs with `npm install -g phantomjs` (Phantomjs is currently only used by the OS X/Linux batch files)
+4. Install phantomjs with `npm install -g phantomjs` (for Windows, you may also download the .exe directly)
 5. Checkout or download the following repositories from GitHub:
 
 	* https://github.com/TiddlyWiki/TiddlyWiki for the TiddlyWiki core source code. You can either download the latest version or visit https://github.com/TiddlyWiki/tiddlywiki/tags to download a specific tagged version
@@ -60,7 +60,7 @@ Edit the `setenv.bat/sh` script to set:
 * the correct release version number for TiddlyWiki
 * the path for the TW5 repository
 * the path locations of the `curl` and `diff` programs you have installed
-* the location of a web browser
+* the location of a web browser (phantom.js)
 
 `setenv` is invoked automatically by each part of the build process, so that all build scripts share the same environment variables.
 
