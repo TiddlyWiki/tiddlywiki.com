@@ -1,16 +1,14 @@
 https://github.com/TiddlyWiki/tiddlywiki.com
 
 
-Description
------------
+## Description
 
 This repository contains the tools required to create the site http://classic.tiddlywiki.com/ and build TiddlyWiki Classic from its components.
 
 [TiddlyWiki repository](https://github.com/TiddlyWiki/tiddlywiki/) contains both the content for classic.tiddlywiki.com (the content/ folder) and TiddlyWiki Classic components. Legacy tools to pull content for classic.tiddlywiki.com from TiddlySpace are not removed yet.
 
 
-Prerequisites
--------------
+## Prerequisites
 
 The following steps prepare your machine for building classic.tiddlywiki.com:
 
@@ -38,19 +36,17 @@ The recommended directory structure for downloading the repositories is as follo
 					|
 					+--- TiddlyWiki5
 
-Overview
---------
+## Overview
 
 The batch files provided for Windows and OS X/Linux currently work slightly differently.
 
-Building classic.tiddlywiki.com on Windows
-----------------------------------
+## Building on Windows
 
-The classic.tiddlywiki.com build process is divided into several parts: `setenv`, `bld`, and `test`.  You can run each part separately, or invoke a complete build sequence by running `maketw`, which then automatically calls upon each separate part of the process.
+The build process is divided into several parts: `setenv`, `bld`, and `test`.  You can run each part separately, or invoke a complete build sequence by running `maketw`, which then automatically calls upon each separate part of the process.
 
 These steps should be performed with the current directory set to the classic.tiddlywiki.com repository.
 
-## Setting up batch files
+### Setting up batch files
 
 Edit the `setenv.bat/sh` script to set:
 
@@ -61,7 +57,7 @@ Edit the `setenv.bat/sh` script to set:
 
 `setenv` is invoked automatically by each part of the build process, so that all build scripts share the same environment variables.
 
-## Cooking TiddlyWiki
+### Cooking TiddlyWiki
 
 The `bld.bat/sh` script clears the target folder, `cooked/x.y.z` (where x.y.z is the new build release number) and then invokes TiddlyWiki5 to generate a new target `index.html` file using `index.html.recipe` to incorporate the tiddler content.
 
@@ -71,18 +67,17 @@ The `bld` script is paused while you perform this manual "save changes" step.  A
 
 The `bld` script also copies the new index.html and empty.html files to a `test` folder (naming them `index.x.y.z.html` and `empty.x.y.z.html`, respectively) within the tiddlywiki.com repository so that TiddlyWiki developers can use these 'archived' copies for comparison with future builds.
 
-## Testing the build
+### Testing the build
 
 After the `bld` script has assembled the new TiddlyWiki target files (.html, .xml, .jar, and .zip), `maketw` invokes the `test.bat/sh` script, which performs a comparison between the newly generated index.html file and a copy of the previous version of TiddlyWiki that is stored in the tiddlywiki.com repository as `test/index.html`.
 
 Note: whenever a new version of TiddlyWiki is officially published, the new `index.html` file must be updated and committed to the repository so that future builds will be tested against the most recent published version of TiddlyWiki.
 
-## Publishing to tiddlywiki.com
+### Publishing to tiddlywiki.com
 
 Once the `bld` and `test` sequence has completed, you have successfully built a new local copy of TiddlyWiki.  You can then publish the results to http://classic.tiddlywiki.com by copying the newly generated files (index.html, index.xml, TiddlySaver.jar, empty.html, and empty.zip) from the target folder (i.e., cooked/x.y.z/) into the local github.tiddlywiki.com repository and then commit those changes to the remote repository.  The committed files will automatically become available at http://tiddlywiki.github.com (which is also served by redirection from http://tiddlywiki.com).  If you are not a TiddlyWiki team member, you can instead fork the github.tiddlywiki.com repository, update your fork and create a pull request but keep in mind that content of [the main TiddlyWiki repository](https://github.com/TiddlyWiki/TiddlyWiki) should be updated accordingly, otherwise the change in core/content is likely to get lost with the next update.
 
-Building classic.tiddlywiki.com on Unix
-----------------------------------
+## Building on Unix
 
 Execute `./bld.sh` to:
 
