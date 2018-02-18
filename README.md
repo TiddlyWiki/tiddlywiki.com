@@ -5,7 +5,7 @@ https://github.com/TiddlyWiki/tiddlywiki.com
 
 This repository contains the tools required to create the site http://classic.tiddlywiki.com/ and build TiddlyWiki Classic from its components.
 
-[TiddlyWiki repository](https://github.com/TiddlyWiki/tiddlywiki/) contains both the content for classic.tiddlywiki.com (the content/ folder) and TiddlyWiki Classic components. Legacy tools to pull content for classic.tiddlywiki.com from TiddlySpace are not removed yet.
+[TiddlyWiki repository](https://github.com/TiddlyWiki/tiddlywiki/) contains both the content for classic.tiddlywiki.com (the `content/` folder) and TiddlyWiki Classic components. Legacy tools to pull content for classic.tiddlywiki.com from TiddlySpace are not removed yet.
 
 
 ## Prerequisites
@@ -13,7 +13,7 @@ This repository contains the tools required to create the site http://classic.ti
 The following steps prepare your machine for building classic.tiddlywiki.com:
 
 1. Install the latest version of `nodejs` from http://www.nodejs.org
-2. If necessary, install the command line tool curl to retrieve content from TiddlySpace. For Windows systems, it can be downloaded from http://curl.haxx.se/download.html
+2. If necessary, install the command line tool `curl` to retrieve content from TiddlySpace. For Windows systems, it can be downloaded from http://curl.haxx.se/download.html
 3. If necessary, install a `diff` program to compare versions of TiddlyWiki for testing after building. Mac OS X users can use `opendiff` that ships with XCode. Two options for Windows users are [WinDiff](http://www.grigsoft.com/download-windiff.htm) and [ExamDiff](http://www.prestosoft.com/edp_examdiff.asp)
 4. Install phantomjs with `npm install -g phantomjs` (for Windows, you may also download the .exe directly)
 5. Checkout or download the following repositories from GitHub:
