@@ -81,7 +81,7 @@ Note: whenever a new version of TiddlyWiki is officially published, the new `ind
 
 Once the `bld` and `test` sequence has completed, you have successfully built a new local copy of TiddlyWiki.  You can then publish the results to http://classic.tiddlywiki.com by copying the newly generated files (index.html, index.xml, TiddlySaver.jar, empty.html, and empty.zip) from the target folder (i.e., cooked/x.y.z/) into the local github.tiddlywiki.com repository and then commit those changes to the remote repository.  The committed files will automatically become available at http://tiddlywiki.github.com (which is also served by redirection from http://tiddlywiki.com).  If you are not a TiddlyWiki team member, you can instead fork the github.tiddlywiki.com repository, update your fork and create a pull request but keep in mind that content of [the main TiddlyWiki repository](https://github.com/TiddlyWiki/TiddlyWiki) should be updated accordingly, otherwise the change in core/content is likely to get lost with the next update.
 
-Building classic.tiddlywiki.com on Windows
+Building classic.tiddlywiki.com on Unix
 ----------------------------------
 
 Execute `./bld.sh` to:
