@@ -1,4 +1,4 @@
-https://github.com/TiddlyWiki/tiddlywiki.com
+The build tools here may be considered outdated. Most of their functionality is reproduced in the main repository in the [build folder](https://github.com/TiddlyWiki/TiddlyWiki/tree/master/build) (see readme there). Instructions for maintainers and developers will also be published there, as well as further updates to the build/release toolchain.
 
 
 ## Description
